@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הרפתקאותיה של ריס בארץ התריס</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind via CDN (works fine on GitHub Pages) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C7B8FF',
+                        heading: '#5E548E',
+                        cta: '#FFB26B',
+                        'cta-hover': '#FF9F4A',
+                        coral: '#FF6B6B',
+                        trust: '#9ED8C3',
+                        softbg: '#F5F3FF',
+                    },
+                    fontFamily: {
+                        sans: ['Heebo', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'xl': '1.5rem',
+                        '2xl': '2rem',
+                        '3xl': '3rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* === RESET & BASE === */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #F5F3FF;
+            color: #5E548E;
+            font-family: 'Heebo', sans-serif;
+            /* iframe-friendly: no fixed height constraints */
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* === ANIMATIONS === */
+        .magical-gradient {
+            background: linear-gradient(135deg, #F5F3FF 0%, #ffffff 100%);
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%   { transform: translateY(0px) rotate(-3deg); }
+            50%  { transform: translateY(-15px) rotate(-3deg); }
+            100% { transform: translateY(0px) rotate(-3deg); }
+        }
+        .book-shadow {
+            box-shadow: 0 20px 40px -15px rgba(94, 84, 142, 0.3);
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.7; }
+        }
+        .urgency-badge { animation: pulse-soft 2.5s ease-in-out infinite; }
+
+        .character-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .character-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 50px -10px rgba(94, 84, 142, 0.25);
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position:  200% center; }
+        }
+        .cta-shimmer {
+            background: linear-gradient(90deg, #FFB26B 0%, #FFCA8E 40%, #FFB26B 60%, #FF9F4A 100%);
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+            color: #fff;
+        }
+        .cta-shimmer:hover { transform: scale(1.04); }
+
+        .star { color: #FFB26B; }
+
+        .price-tag {
+            position: relative;
+            display: inline-block;
+        }
+        .price-tag::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -5px;
+            right: -5px;
+            height: 2px;
+            background: #FF6B6B;
+            transform: rotate(-8deg);
+        }
+
+        .order-glow {
+            box-shadow: 0 0 60px rgba(199,184,255,.4), 0 20px 40px -10px rgba(94,84,142,.2);
+        }
+
+        /* Smooth anchor offset so header doesn't overlap */
+        [id] { scroll-margin-top: 80px; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- ===== HEADER ===== -->
+    <header class="py-6 px-4 md:px-8 flex justify-between items-center container mx-auto">
+        <div class="text-2xl font-black text-heading tracking-tight">ארץ התריס</div>
+        <a href="#order" class="hidden md:inline-block bg-primary text-heading font-bold py-3 px-8 rounded-full shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
+            הזמינו עכשיו
+        </a>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-24 magical-gradient">
+        <div class="absolute top-20 left-10 w-20 h-20 bg-primary opacity-20 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-10 right-10 w-32 h-32 bg-coral opacity-10 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-4 md:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
+            <div class="flex-1 text-center md:text-right z-10">
+
+                <!-- Urgency badge -->
+                <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-500 font-bold text-sm py-2 px-5 rounded-full mb-6 urgency-badge">
+                    🔥 מחיר השקה מיוחד – לזמן מוגבל בלבד!
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-heading leading-tight mb-4">
+                    כשהילד שלכם יסגור את הספר,<br class="hidden md:block"> הוא יאמין בעצמו קצת יותר.
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl text-heading opacity-80 mb-4 leading-relaxed max-w-xl mx-auto md:mx-0">
+                    ספר ילדים ייחודי לגילאי 5–9 שמלמד על הגוף, הבריאות וה<strong>כוח הפנימי</strong> – דרך הרפתקה קסומה שהם פשוט לא יוכלו להפסיק לקרוא.
+                </p>
+
+                <!-- Social proof -->
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-8">
+                    <span class="star text-xl">★★★★★</span>
+                    <p class="text-sm font-medium" style="color:#5E548E99;">
+                        <span class="font-bold text-heading">+1,200 משפחות</span> כבר קראו יחד
+                    </p>
+                </div>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 items-center">
+                    <a href="#order" class="cta-shimmer text-xl font-bold py-4 px-10 rounded-full shadow-lg transition-all transform hover:scale-105 text-center inline-block">
+                        אני רוצה את הספר! ←
+                    </a>
+                    <a href="#characters" style="color:#5E548E99;" class="underline underline-offset-4 text-sm hover:text-heading transition">
+                        ספרו לי עוד קודם
+                    </a>
+                </div>
+
+                <!-- Trust icons -->
+                <div class="flex flex-wrap gap-4 mt-6 justify-center md:justify-start text-sm" style="color:#5E548E66;">
+                    <span>✅ הותאם לילדים בישראל</span>
+                    <span>📦 משלוח עד הבית</span>
+                    <span>🔒 רכישה מאובטחת</span>
+                </div>
+            </div>
+
+            <!-- Book image -->
+            <div class="flex-1 relative z-10 floating">
+                <div class="relative w-4/5 md:w-full mx-auto rounded-3xl overflow-hidden book-shadow">
+                    <img src="https://placehold.co/600x800/C7B8FF/5E548E?text=כריכת+הספר+כאן"
+                         alt="כריכת הספר הרפתקאותיה של ריס"
+                         class="w-full h-auto object-cover rounded-3xl">
+                    <div class="absolute inset-0 rounded-3xl pointer-events-none"
+                         style="background: linear-gradient(to top right, rgba(199,184,255,.2), transparent);"></div>
+                </div>
+                <!-- Review bubble -->
+                <div class="absolute -bottom-4 -right-4 md:-right-8 bg-white rounded-2xl shadow-lg p-4 max-w-xs border border-primary"
+                     style="border-color:rgba(199,184,255,.4);">
+                    <div class="flex mb-1"><span class="star text-sm">★★★★★</span></div>
+                    <p class="text-xs font-medium" style="color:#5E548ECC;">"הילדה שלי ביקשה לקרוא שלוש פעמים ברצף!"</p>
+                    <p class="text-xs mt-1" style="color:#5E548E66;">— שירה, אמא לבת 7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROBLEM ===== -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-3xl text-center bg-white rounded-3xl p-10 shadow-sm">
+            <h2 class="text-3xl font-bold text-heading mb-6">הורים יקרים, אנחנו מבינים את האתגר.</h2>
+            <p class="text-xl leading-relaxed mb-6" style="color:#5E548ECC;">
+                איך מסבירים לילדים סקרנים על תהליכים שקורים בגוף שלהם, או על חשיבות הבריאות, מבלי להלחיץ או לשעמם אותם?
+            </p>
+            <p class="text-lg leading-relaxed" style="color:#5E548ECC;">
+                אתם רוצים להעניק להם ידע וכוח, אבל גם לשמור על התמימות והקסם של הילדות. בדיוק בשביל זה יצרנו את "ארץ התריס" – מקום שבו ידע פוגש דמיון.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== CHARACTERS ===== -->
+    <section id="characters" class="py-16 px-4 relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-50 rounded-full blur-3xl -z-10"
+             style="background:rgba(199,184,255,.08);"></div>
+
+        <div class="container mx-auto">
+            <div class="text-center mb-4">
+                <span class="text-sm font-bold py-1 px-4 rounded-full"
+                      style="background:rgba(199,184,255,.2);color:#5E548E;">הדמויות שיגנבו את הלב</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-black text-center text-heading mb-4">הכירו את החברים למסע</h2>
+            <p class="text-center text-lg mb-12 max-w-xl mx-auto" style="color:#5E548E99;">
+                כל דמות מייצגת ערך אחר – וביחד הם לומדים (ומלמדים) שיעורי חיים שיישארו עם הילדים שלכם לתמיד.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0">
+
+                <!-- Rais -->
+                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
+                    <div class="h-48 flex items-center justify-center relative overflow-hidden"
+                         style="background:rgba(199,184,255,.3);">
+                        <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent,rgba(199,184,255,.2));"></div>
+                        <div class="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-lg mt-10 border-4 relative z-10"
+                             style="border-color:#C7B8FF;">
+                            <span class="text-5xl">👧🏻</span>
+                        </div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#C7B8FF;">הגיבורה הראשית</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-3">ריס</h3>
+                        <p class="leading-relaxed mb-4" style="color:#5E548ECC;">סקרנית, אמיצה, ותמיד שואלת "למה?". ילדים מתאהבים בה מהרגע הראשון – כי היא בדיוק כמוהם.</p>
+                        <div class="rounded-xl p-3 text-sm font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מה היא מלמדת? להאמין בסקרנות כדלת לידע
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seleni (featured) -->
+                <div class="character-card bg-white rounded-3xl overflow-hidden relative transform md:-translate-y-4 border-2"
+                     style="border-color:rgba(255,178,107,.4);box-shadow:0 25px 50px -10px rgba(94,84,142,.2);">
+                    <div class="absolute top-4 left-1/2 -translate-x-1/2 text-white text-xs font-bold py-1 px-4 rounded-full z-20 whitespace-nowrap"
+                         style="background:#FFB26B;">
+                        ⭐ דמות האהובה על הילדים
+                    </div>
+                    <div class="h-48 flex items-center justify-center relative overflow-hidden"
+                         style="background:rgba(255,178,107,.3);">
+                        <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent,rgba(255,178,107,.2));"></div>
+                        <div class="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-lg mt-10 border-4 relative z-10"
+                             style="border-color:#FFB26B;">
+                            <span class="text-5xl">🛡️</span>
+                        </div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FFB26B;">המגן הנאמן</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-3">סלני</h3>
+                        <p class="leading-relaxed mb-4" style="color:#5E548ECC;">החבר החכם ששומר על האיזון. הוא מלמד את ריס – ואת הילדים שלכם – על חשיבות ההגנה והטיפוח העצמי.</p>
+                        <div class="rounded-xl p-3 text-sm font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מה הוא מלמד? לשמור על עצמנו מבפנים ומבחוץ
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barzi -->
+                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
+                    <div class="h-48 flex items-center justify-center relative overflow-hidden"
+                         style="background:rgba(255,107,107,.3);">
+                        <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent,rgba(255,107,107,.2));"></div>
+                        <div class="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-lg mt-10 border-4 relative z-10"
+                             style="border-color:#FF6B6B;">
+                            <span class="text-5xl">⚡</span>
+                        </div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FF6B6B;">מקור האנרגיה</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-3">ברזי</h3>
+                        <p class="leading-relaxed mb-4" style="color:#5E548ECC;">פצצת אנרגיה כתומה-אדומה! הוא מראה לכולם מאיפה מגיע הכוח לשחק, לרוץ ולחשוב.</p>
+                        <div class="rounded-xl p-3 text-sm font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מה הוא מלמד? שמזון ושינה = כוח אמיתי
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="mb-4 text-sm" style="color:#5E548E66;">מוכנים לפגוש אותם בספר?</p>
+                <a href="#order" class="cta-shimmer inline-block font-bold py-4 px-12 rounded-full shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    הזמינו עכשיו וצאו להרפתקה ←
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFITS ===== -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-3xl md:text-4xl font-black text-center text-heading mb-12">יותר מרק סיפור לפני השינה</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
+                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-heading mb-2">למידה ללא מאמץ</h3>
+                        <p style="color:#5E548ECC;">הטמעת מושגים מורכבים דרך עלילה סוחפת, ללא תחושת "שיעור" או לחץ.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
+                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-heading mb-2">חיזוק תחושת המסוגלות</h3>
+                        <p style="color:#5E548ECC;">כשהילד מבין איך גופו פועל, הוא מרגיש בטוח יותר בעצמו וביכולותיו.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
+                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-heading mb-2">זמן איכות הורה-ילד</h3>
+                        <p style="color:#5E548ECC;">הזדמנות נהדרת לשיח פתוח, שאלות משותפות וקריאה מחבקת לפני השינה.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
+                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-heading mb-2">פיתוח הדמיון והסקרנות</h3>
+                        <p style="color:#5E548ECC;">איורים מרהיבים ועולם עשיר שמעודדים חשיבה יצירתית.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AUTHOR ===== -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 border-2"
+             style="background:rgba(199,184,255,.1);border-color:rgba(199,184,255,.3);">
+            <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
+                <img src="https://placehold.co/200x200/5E548E/ffffff?text=תמונת+מחבר" alt="תמונת המחברת" class="w-full h-full object-cover">
+            </div>
+            <div class="text-center md:text-right">
+                <h3 class="text-2xl font-bold text-heading mb-4">דבר המחברת, [שם המחברת]</h3>
+                <p class="text-lg leading-relaxed italic" style="color:#5E548ECC;">
+                    "כתבתי את 'הרפתקאותיה של ריס' מתוך אמונה עמוקה שכל ילד זכאי להבין את הכוח הפנימי שטמון בו. כשאנחנו מחברים ידע עם קסם, אנחנו נותנים להם כלים לחיים."
+                </p>
+                <p class="font-medium mt-4 text-heading">אמא, ואשת חינוך/בריאות</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ORDER ===== -->
+    <section id="order" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute bottom-0 inset-x-0 h-3/4 rounded-t-[5rem] -z-10"
+             style="background:rgba(199,184,255,.2);"></div>
+
+        <div class="container mx-auto max-w-2xl relative z-10">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl md:text-5xl font-black text-heading mb-4 leading-tight">
+                    תנו לילדכם את ההרפתקה<br>שתשנה את הדרך שהם רואים את עצמם.
+                </h2>
+                <p class="text-lg" style="color:#5E548E99;">הזמינו היום – ותקבלו את הספר בדואר תוך ימים ספורים.</p>
+            </div>
+
+            <!-- Order box -->
+            <div class="bg-white rounded-3xl p-8 md:p-10 order-glow">
+
+                <!-- What you get -->
+                <div class="mb-6">
+                    <p class="text-sm font-bold uppercase tracking-widest mb-3" style="color:#5E548E66;">מה מקבלים:</p>
+                    <ul class="space-y-2" style="color:#5E548ECC;">
+                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> הספר המודפס "הרפתקאותיה של ריס בארץ התריס"</li>
+                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> איורים מרהיבים בצבע מלא</li>
+                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> דפי פעילות בונוס לילד</li>
+                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> משלוח מהיר עד הבית</li>
+                    </ul>
+                </div>
+
+                <hr style="border-color:rgba(199,184,255,.3);" class="mb-6">
+
+                <!-- Pricing -->
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-4xl font-black text-heading">₪89</span>
+                            <span class="price-tag text-2xl font-bold" style="color:#5E548E40;">₪129</span>
+                        </div>
+                        <p class="text-sm font-bold mt-1" style="color:#FF6B6B;">חסכון של ₪40 – מחיר השקה מיוחד!</p>
+                    </div>
+                    <div class="text-right rounded-2xl p-3" style="background:rgba(158,216,195,.1);border:1px solid rgba(158,216,195,.4);">
+                        <p class="text-xs font-medium" style="color:#5E548E99;">⏳ המחיר עולה בקרוב</p>
+                        <p class="text-xs" style="color:#5E548E66;">נותרו מעט עותקים</p>
+                    </div>
+                </div>
+
+                <!-- CTA button -->
+                <a href="#" class="cta-shimmer block w-full text-xl font-black py-5 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all transform hover:scale-105 mb-4">
+                    כן! אני רוצה את הספר ←
+                </a>
+
+                <!-- Trust icons -->
+                <div class="flex justify-center gap-6 flex-wrap text-xs" style="color:#5E548E66;">
+                    <span>🔒 תשלום מאובטח</span>
+                    <span>📦 משלוח עד 5 ימי עסקים</span>
+                    <span>❤️ מאות הורים מרוצים</span>
+                </div>
+
+                <!-- Reviews -->
+                <div class="mt-8 pt-6 space-y-4" style="border-top:1px solid rgba(199,184,255,.2);">
+                    <p class="text-xs font-bold uppercase tracking-widest text-center mb-4" style="color:#5E548E66;">מה אמרו הורים אחרים?</p>
+                    <div class="rounded-xl p-4" style="background:#F5F3FF;">
+                        <div class="flex mb-1"><span class="star text-sm">★★★★★</span></div>
+                        <p class="text-sm" style="color:#5E548ECC;">"הבן שלי ביקש לקרוא כל לילה. סוף סוף ספר שהוא לא מרשה לי לסגור!"</p>
+                        <p class="text-xs mt-1" style="color:#5E548E66;">— מיכל ג., אמא לבן 6</p>
+                    </div>
+                    <div class="rounded-xl p-4" style="background:#F5F3FF;">
+                        <div class="flex mb-1"><span class="star text-sm">★★★★★</span></div>
+                        <p class="text-sm" style="color:#5E548ECC;">"אחרי הספר הבת שלי התחילה לשאול שאלות על הגוף שלה. הרגשתי שנפתח עולם שלם."</p>
+                        <p class="text-xs mt-1" style="color:#5E548E66;">— רונית מ., אמא לבת 8</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-sm mt-6" style="color:#5E548E66;">
+                לא בטוחים? שלחו לנו הודעה – אנחנו כאן לכל שאלה.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-8 text-center text-sm" style="background:#F5F3FF;color:#5E548E66;">
+        <div class="container mx-auto px-4">
+            <p>© 2024 הרפתקאותיה של ריס בארץ התריס. כל הזכויות שמורות.</p>
+            <div class="mt-4 flex justify-center gap-4">
+                <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">תקנון</a>
+                <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">מדיניות פרטיות</a>
+                <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">צור קשר</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
