@@ -161,7 +161,7 @@
 
                 <!-- CTAs -->
                 <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 items-center">
-                    <a href="https://wa.me/972545497227?text=היי%20ד%22ר%20יניב%2C%20אני%20מעוניין%2Fת%20להזמין%20את%20הספר%20הרפתקאותיה%20של%20ריס%20%F0%9F%93%96" target="_blank" class="cta-shimmer text-xl font-bold py-4 px-10 rounded-full shadow-lg transition-all transform hover:scale-105 text-center inline-block">
+                    <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%93%22%D7%A8%20%D7%99%D7%A0%D7%99%D7%91%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank" class="cta-shimmer text-xl font-bold py-4 px-10 rounded-full shadow-lg transition-all transform hover:scale-105 text-center inline-block">
                         אני רוצה את הספר! ←
                     </a>
                     <a href="#characters" style="color:#5E548E99;" class="underline underline-offset-4 text-sm hover:text-heading transition">
@@ -225,69 +225,108 @@
                 כל דמות מייצגת ערך אחר – וביחד הם לומדים (ומלמדים) שיעורי חיים שיישארו עם הילדים שלכם לתמיד.
             </p>
 
+            <!-- Row 1: 3 characters -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0 mb-8">
+
+                <!-- ריס -->
+                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
+                    <div class="h-56 flex items-end justify-center pt-4 relative overflow-hidden"
+                         style="background:linear-gradient(160deg,#FFF0E8,#FFE0D0);">
+                        <img src="Rees.png" alt="ריס" class="h-52 w-auto object-contain object-bottom drop-shadow-lg">
+                    </div>
+                    <div class="p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#C7B8FF;">הגיבורה הראשית</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">ריס</h3>
+                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">סקרנית, אמיצה, ותמיד שואלת "למה?". ילדים מתאהבים בה מהרגע הראשון.</p>
+                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מלמדת: להאמין בסקרנות כדלת לידע
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ברזלן -->
+                <div class="character-card bg-white rounded-3xl overflow-hidden relative transform md:-translate-y-4 border-2"
+                     style="border-color:rgba(255,178,107,.5);box-shadow:0 25px 50px -10px rgba(94,84,142,.2);">
+                    <div class="absolute top-3 left-1/2 -translate-x-1/2 text-white text-xs font-bold py-1 px-4 rounded-full z-20 whitespace-nowrap"
+                         style="background:#FFB26B;">⭐ דמות האהובה על הילדים</div>
+                    <div class="h-56 flex items-end justify-center pt-4 relative overflow-hidden"
+                         style="background:linear-gradient(160deg,#FFF3E0,#FFE0B0);">
+                        <img src="barzelan.png" alt="ברזלן" class="h-52 w-auto object-contain object-bottom drop-shadow-lg">
+                    </div>
+                    <div class="p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FFB26B;">לוחם הברזל</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">ברזלן</h3>
+                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">הלוחם האמיץ עם שריון הקשקשים. הוא מגן על ארץ התריס מכל איום.</p>
+                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מלמד: אומץ ועוצמה פנימית
+                        </div>
+                    </div>
+                </div>
+
+                <!-- סלינה -->
+                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
+                    <div class="h-56 flex items-end justify-center pt-4 relative overflow-hidden"
+                         style="background:linear-gradient(160deg,#E0F8F8,#C0EFEF);">
+                        <img src="selina.png" alt="סלינה" class="h-52 w-auto object-contain object-bottom drop-shadow-lg">
+                    </div>
+                    <div class="p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#9ED8C3;">המגינה החכמה</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">סלינה</h3>
+                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">הדמות החכמה עם המשקפיים. סלינה תמיד יודעת מה לעשות ברגעים הקשים.</p>
+                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מלמדת: חוכמה וחשיבה לפני פעולה
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: 3 characters -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0">
 
-                <!-- Rais -->
+                <!-- יודיד -->
                 <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
-                    <div class="h-48 flex items-center justify-center relative overflow-hidden"
-                         style="background:rgba(199,184,255,.3);">
-                        <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent,rgba(199,184,255,.2));"></div>
-                        <div class="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-lg mt-10 border-4 relative z-10"
-                             style="border-color:#C7B8FF;">
-                            <span class="text-5xl">👧🏻</span>
-                        </div>
+                    <div class="h-56 flex items-end justify-center pt-4 relative overflow-hidden"
+                         style="background:linear-gradient(160deg,#FFF5E0,#FFE8B0);">
+                        <img src="yodid.png" alt="יודיד" class="h-52 w-auto object-contain object-bottom drop-shadow-lg">
                     </div>
-                    <div class="p-8 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#C7B8FF;">הגיבורה הראשית</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-3">ריס</h3>
-                        <p class="leading-relaxed mb-4" style="color:#5E548ECC;">סקרנית, אמיצה, ותמיד שואלת "למה?". ילדים מתאהבים בה מהרגע הראשון – כי היא בדיוק כמוהם.</p>
-                        <div class="rounded-xl p-3 text-sm font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מה היא מלמדת? להאמין בסקרנות כדלת לידע
+                    <div class="p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FFB26B;">החבר הנאמן</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">יודיד</h3>
+                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">הרך והחם בחבורה. יודיד תמיד שם בשבילך, בכל רגע ובכל מצב.</p>
+                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מלמד: ידידות ואמפתיה אמיתית
                         </div>
                     </div>
                 </div>
 
-                <!-- Seleni (featured) -->
-                <div class="character-card bg-white rounded-3xl overflow-hidden relative transform md:-translate-y-4 border-2"
-                     style="border-color:rgba(255,178,107,.4);box-shadow:0 25px 50px -10px rgba(94,84,142,.2);">
-                    <div class="absolute top-4 left-1/2 -translate-x-1/2 text-white text-xs font-bold py-1 px-4 rounded-full z-20 whitespace-nowrap"
-                         style="background:#FFB26B;">
-                        ⭐ דמות האהובה על הילדים
+                <!-- ההורים -->
+                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
+                    <div class="h-56 flex items-end justify-center pt-4 relative overflow-hidden"
+                         style="background:linear-gradient(160deg,#F5F0FF,#E8DEFF);">
+                        <img src="parents.png" alt="ההורים של ריס" class="h-52 w-auto object-contain object-bottom drop-shadow-lg">
                     </div>
-                    <div class="h-48 flex items-center justify-center relative overflow-hidden"
-                         style="background:rgba(255,178,107,.3);">
-                        <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent,rgba(255,178,107,.2));"></div>
-                        <div class="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-lg mt-10 border-4 relative z-10"
-                             style="border-color:#FFB26B;">
-                            <span class="text-5xl">🛡️</span>
-                        </div>
-                    </div>
-                    <div class="p-8 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FFB26B;">המגן הנאמן</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-3">סלני</h3>
-                        <p class="leading-relaxed mb-4" style="color:#5E548ECC;">החבר החכם ששומר על האיזון. הוא מלמד את ריס – ואת הילדים שלכם – על חשיבות ההגנה והטיפוח העצמי.</p>
-                        <div class="rounded-xl p-3 text-sm font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מה הוא מלמד? לשמור על עצמנו מבפנים ומבחוץ
+                    <div class="p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#C7B8FF;">עוגן הבית</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">ההורים של ריס</h3>
+                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">הבסיס החם והאוהב שממנו ריס שואבת את הכוח לצאת להרפתקאות.</p>
+                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מלמדים: כוחה של משפחה ואהבה
                         </div>
                     </div>
                 </div>
 
-                <!-- Barzi -->
+                <!-- המלכה -->
                 <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
-                    <div class="h-48 flex items-center justify-center relative overflow-hidden"
-                         style="background:rgba(255,107,107,.3);">
-                        <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent,rgba(255,107,107,.2));"></div>
-                        <div class="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-lg mt-10 border-4 relative z-10"
-                             style="border-color:#FF6B6B;">
-                            <span class="text-5xl">⚡</span>
-                        </div>
+                    <div class="h-56 flex items-end justify-center pt-4 relative overflow-hidden"
+                         style="background:linear-gradient(160deg,#E8F8F0,#C8EFDF);">
+                        <img src="queen.png" alt="המלכה" class="h-52 w-auto object-contain object-bottom drop-shadow-lg">
                     </div>
-                    <div class="p-8 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FF6B6B;">מקור האנרגיה</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-3">ברזי</h3>
-                        <p class="leading-relaxed mb-4" style="color:#5E548ECC;">פצצת אנרגיה כתומה-אדומה! הוא מראה לכולם מאיפה מגיע הכוח לשחק, לרוץ ולחשוב.</p>
-                        <div class="rounded-xl p-3 text-sm font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מה הוא מלמד? שמזון ושינה = כוח אמיתי
+                    <div class="p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#9ED8C3;">המנהיגה החכמה</span>
+                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">המלכה</h3>
+                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">המלכה הטובה של ארץ התריס, עם הסל המלא טוב. היא מכירה את סודות הממלכה.</p>
+                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
+                            💡 מלמדת: מנהיגות, נתינה וטוב לב
                         </div>
                     </div>
                 </div>
@@ -295,7 +334,7 @@
 
             <div class="text-center mt-12">
                 <p class="mb-4 text-sm" style="color:#5E548E66;">מוכנים לפגוש אותם בספר?</p>
-                <a href="https://wa.me/972545497227?text=היי%20ד%22ר%20יניב%2C%20אני%20מעוניין%2Fת%20להזמין%20את%20הספר%20הרפתקאותיה%20של%20ריס%20%F0%9F%93%96" target="_blank" class="cta-shimmer inline-block font-bold py-4 px-12 rounded-full shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%93%22%D7%A8%20%D7%99%D7%A0%D7%99%D7%91%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank" class="cta-shimmer inline-block font-bold py-4 px-12 rounded-full shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
                     הזמינו עכשיו וצאו להרפתקה ←
                 </a>
             </div>
@@ -360,14 +399,14 @@
         <div class="container mx-auto max-w-4xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 border-2"
              style="background:rgba(199,184,255,.1);border-color:rgba(199,184,255,.3);">
             <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
-                <img src="https://placehold.co/200x200/5E548E/ffffff?text=ד%22ר+יניב+עובדיה" alt="תמונת המחבר" class="w-full h-full object-cover">
+                <img src="author.avif" alt="ד״ר יניב עובדיה" class="w-full h-full object-cover">
             </div>
             <div class="text-center md:text-right">
                 <h3 class="text-2xl font-bold text-heading mb-4">דבר המחבר, ד"ר יניב עובדיה</h3>
                 <p class="text-lg leading-relaxed italic" style="color:#5E548ECC;">
                     "כתבתי את 'הרפתקאותיה של ריס' מתוך אמונה עמוקה שכל ילד זכאי להבין את הכוח הפנימי שטמון בו. כשאנחנו מחברים ידע עם קסם, אנחנו נותנים להם כלים לחיים."
                 </p>
-                <p class="font-medium mt-4 text-heading">אמא, ואשת חינוך/בריאות</p>
+                <p class="font-medium mt-4 text-heading">אבא, רופא ואיש חינוך</p>
             </div>
         </div>
     </section>
@@ -393,9 +432,7 @@
                     <p class="text-sm font-bold uppercase tracking-widest mb-3" style="color:#5E548E66;">מה מקבלים:</p>
                     <ul class="space-y-2" style="color:#5E548ECC;">
                         <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> הספר המודפס "הרפתקאותיה של ריס בארץ התריס"</li>
-                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> איורים מרהיבים בצבע מלא</li>
-                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> דפי פעילות בונוס לילד</li>
-                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> משלוח מהיר עד הבית</li>
+                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> איורים מרהיבים בצבע מלא לאורך כל הספר</li>
                     </ul>
                 </div>
 
@@ -417,7 +454,7 @@
                 </div>
 
                 <!-- CTA button -->
-                <a href="https://wa.me/972545497227?text=היי%20ד%22ר%20יניב%2C%20אני%20מעוניין%2Fת%20להזמין%20את%20הספר%20הרפתקאותיה%20של%20ריס%20%F0%9F%93%96" target="_blank" class="cta-shimmer block w-full text-xl font-black py-5 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all transform hover:scale-105 mb-4">
+                <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%93%22%D7%A8%20%D7%99%D7%A0%D7%99%D7%91%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank" class="cta-shimmer block w-full text-xl font-black py-5 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all transform hover:scale-105 mb-4">
                     כן! אני רוצה את הספר ←
                 </a>
 
