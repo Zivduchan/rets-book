@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הרפתקאותיה של ריס בארץ התריס</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind via CDN (works fine on GitHub Pages) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,559 +16,449 @@
                         primary: '#C7B8FF',
                         heading: '#5E548E',
                         cta: '#FFB26B',
-                        'cta-hover': '#FF9F4A',
                         coral: '#FF6B6B',
                         trust: '#9ED8C3',
                         softbg: '#F5F3FF',
                     },
-                    fontFamily: {
-                        sans: ['Heebo', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        'xl': '1.5rem',
-                        '2xl': '2rem',
-                        '3xl': '3rem',
-                    }
+                    fontFamily: { sans: ['Heebo', 'sans-serif'] },
                 }
             }
         }
     </script>
-
     <style>
-        /* === RESET & BASE === */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body {
-            background-color: #F5F3FF;
-            color: #5E548E;
-            font-family: 'Heebo', sans-serif;
-            /* iframe-friendly: no fixed height constraints */
-            min-height: 100vh;
-            width: 100%;
-            overflow-x: hidden;
+        body { background:#F5F3FF; color:#5E548E; font-family:'Heebo',sans-serif; overflow-x:hidden; }
+
+        .magical-gradient { background: linear-gradient(135deg,#F5F3FF 0%,#ffffff 100%); }
+
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%,100% { transform: translateY(0px) rotate(-3deg); }
+            50%      { transform: translateY(-15px) rotate(-3deg); }
         }
 
-        /* === ANIMATIONS === */
-        .magical-gradient {
-            background: linear-gradient(135deg, #F5F3FF 0%, #ffffff 100%);
-        }
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%   { transform: translateY(0px) rotate(-3deg); }
-            50%  { transform: translateY(-15px) rotate(-3deg); }
-            100% { transform: translateY(0px) rotate(-3deg); }
-        }
-        .book-shadow {
-            box-shadow: 0 20px 40px -15px rgba(94, 84, 142, 0.3);
-        }
-        @keyframes pulse-soft {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0.7; }
-        }
+        @keyframes pulse-soft { 0%,100%{opacity:1} 50%{opacity:0.7} }
         .urgency-badge { animation: pulse-soft 2.5s ease-in-out infinite; }
 
-        .character-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .character-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 30px 50px -10px rgba(94, 84, 142, 0.25);
-        }
+        .character-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .character-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 25px 45px -10px rgba(94,84,142,.22); }
 
-        @keyframes shimmer {
-            0%   { background-position: -200% center; }
-            100% { background-position:  200% center; }
-        }
+        @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
         .cta-shimmer {
-            background: linear-gradient(90deg, #FFB26B 0%, #FFCA8E 40%, #FFB26B 60%, #FF9F4A 100%);
+            background: linear-gradient(90deg,#FFB26B 0%,#FFCA8E 40%,#FFB26B 60%,#FF9F4A 100%);
             background-size: 200% auto;
             animation: shimmer 3s linear infinite;
             color: #fff;
         }
-        .cta-shimmer:hover { transform: scale(1.04); }
+        .cta-shimmer:hover { transform: scale(1.03); }
 
         .star { color: #FFB26B; }
 
-        .price-tag {
-            position: relative;
-            display: inline-block;
-        }
+        .price-tag { position:relative; display:inline-block; }
         .price-tag::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -5px;
-            right: -5px;
-            height: 2px;
-            background: #FF6B6B;
-            transform: rotate(-8deg);
+            content:''; position:absolute; top:50%; left:-5px; right:-5px;
+            height:2px; background:#FF6B6B; transform:rotate(-8deg);
         }
 
-        .order-glow {
-            box-shadow: 0 0 60px rgba(199,184,255,.4), 0 20px 40px -10px rgba(94,84,142,.2);
-        }
-
-        /* Smooth anchor offset so header doesn't overlap */
-        [id] { scroll-margin-top: 80px; }
+        .order-glow { box-shadow: 0 0 60px rgba(199,184,255,.4), 0 20px 40px -10px rgba(94,84,142,.2); }
+        [id] { scroll-margin-top: 70px; }
     </style>
 </head>
 <body class="font-sans antialiased">
 
-    <!-- ===== HEADER ===== -->
-    <header class="py-6 px-4 md:px-8 flex justify-between items-center container mx-auto">
-        <div class="text-2xl font-black text-heading tracking-tight">ארץ התריס</div>
-        <a href="#order" class="hidden md:inline-block bg-primary text-heading font-bold py-3 px-8 rounded-full shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
-            הזמינו עכשיו
-        </a>
-    </header>
+<!-- HEADER -->
+<header class="py-4 px-4 md:py-6 md:px-8 flex justify-between items-center container mx-auto">
+    <div class="text-xl md:text-2xl font-black text-heading tracking-tight">ארץ התריס</div>
+    <a href="#order" class="bg-primary text-heading font-bold py-2 px-5 md:py-3 md:px-8 rounded-full text-sm md:text-base shadow-sm hover:shadow-md transition">
+        הזמינו עכשיו
+    </a>
+</header>
 
-    <!-- ===== HERO ===== -->
-    <section class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-24 magical-gradient">
-        <div class="absolute top-20 left-10 w-20 h-20 bg-primary opacity-20 rounded-full blur-2xl"></div>
-        <div class="absolute bottom-10 right-10 w-32 h-32 bg-coral opacity-10 rounded-full blur-3xl"></div>
+<!-- HERO -->
+<section class="relative overflow-hidden pt-4 pb-16 md:pt-14 md:pb-24 magical-gradient">
+    <div class="absolute top-16 left-6 w-16 h-16 bg-primary opacity-20 rounded-full blur-2xl"></div>
+    <div class="absolute bottom-8 right-8 w-28 h-28 bg-coral opacity-10 rounded-full blur-3xl"></div>
 
-        <div class="container mx-auto px-4 md:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
-            <div class="flex-1 text-center md:text-right z-10">
+    <div class="container mx-auto px-4 md:px-8 flex flex-col-reverse md:flex-row items-center gap-4 md:gap-12">
 
-                <!-- Urgency badge -->
-                <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-500 font-bold text-sm py-2 px-5 rounded-full mb-6 urgency-badge">
-                    🔥 מחיר השקה מיוחד – לזמן מוגבל בלבד!
-                </div>
-
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-heading leading-tight mb-4">
-                    כשהילד שלכם יסגור את הספר,<br class="hidden md:block"> הוא יאמין בעצמו קצת יותר.
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl text-heading opacity-80 mb-4 leading-relaxed max-w-xl mx-auto md:mx-0">
-                    ספר ילדים ייחודי לגילאי 5–9 שמלמד על הגוף, הבריאות וה<strong>כוח הפנימי</strong> – דרך הרפתקה קסומה שהם פשוט לא יוכלו להפסיק לקרוא.
+        <!-- Text -->
+        <div class="flex-1 text-center md:text-right z-10 w-full">
+            <div class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-500 font-bold text-xs md:text-sm py-1.5 px-4 rounded-full mb-4 urgency-badge">
+                🔥 מחיר השקה מיוחד – לזמן מוגבל בלבד!
+            </div>
+            <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-heading leading-tight mb-3 md:mb-4">
+                כשהילד שלכם יסגור את הספר,<br class="hidden md:block"> הוא יאמין בעצמו קצת יותר.
+            </h1>
+            <p class="text-base md:text-xl text-heading opacity-80 mb-4 leading-relaxed max-w-xl mx-auto md:mx-0">
+                ספר ילדים ייחודי לגילאי 5–9 שמלמד על הגוף, הבריאות וה<strong>כוח הפנימי</strong> – דרך הרפתקה קסומה שהם פשוט לא יוכלו להפסיק לקרוא.
+            </p>
+            <div class="flex items-center justify-center md:justify-start gap-2 mb-5">
+                <span class="star text-lg">★★★★★</span>
+                <p class="text-sm font-medium" style="color:#5E548E99;">
+                    <span class="font-bold text-heading">+1,200 משפחות</span> כבר קראו יחד
                 </p>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-3 items-center mb-4">
+                <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank"
+                   class="cta-shimmer w-full sm:w-auto text-lg md:text-xl font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg text-center block sm:inline-block">
+                    אני רוצה את הספר! ←
+                </a>
+                <a href="#characters" style="color:#5E548E99;" class="underline underline-offset-4 text-sm hover:text-heading transition">
+                    ספרו לי עוד קודם
+                </a>
+            </div>
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start text-xs md:text-sm" style="color:#5E548E66;">
+                <span>✅ הותאם לילדים בישראל</span>
+                <span>📦 משלוח עד הבית</span>
+                <span>🔒 רכישה מאובטחת</span>
+            </div>
+        </div>
 
-                <!-- Social proof -->
-                <div class="flex items-center justify-center md:justify-start gap-2 mb-8">
-                    <span class="star text-xl">★★★★★</span>
-                    <p class="text-sm font-medium" style="color:#5E548E99;">
-                        <span class="font-bold text-heading">+1,200 משפחות</span> כבר קראו יחד
-                    </p>
+        <!-- Book image -->
+        <div class="flex-1 relative z-10 floating w-full flex justify-center">
+            <div class="relative" style="max-width:340px; width:100%;">
+                <img src="book-cover.png" alt="כריכת הספר הרפתקאותיה של ריס"
+                     class="w-full h-auto object-contain drop-shadow-2xl mx-auto"
+                     style="max-height:480px; object-fit:contain;">
+                <!-- Review bubble -->
+                <div id="review-bubble" class="absolute bg-white rounded-2xl shadow-lg p-3 border"
+                     style="border-color:rgba(199,184,255,.4); bottom:-12px; right:-8px; min-width:140px; max-width:190px;">
+                    <div class="flex mb-1"><span class="star text-xs">★★★★★</span></div>
+                    <p id="review-text" class="font-medium" style="font-size:0.65rem; color:#5E548ECC;"></p>
+                    <p id="review-author" style="font-size:0.6rem; margin-top:2px; color:#5E548E66;"></p>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                <!-- CTAs -->
-                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 items-center">
-                    <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank" class="cta-shimmer text-xl font-bold py-4 px-10 rounded-full shadow-lg transition-all transform hover:scale-105 text-center inline-block">
-                        אני רוצה את הספר! ←
-                    </a>
-                    <a href="#characters" style="color:#5E548E99;" class="underline underline-offset-4 text-sm hover:text-heading transition">
-                        ספרו לי עוד קודם
-                    </a>
+<!-- PROBLEM -->
+<section class="py-10 md:py-16 px-4">
+    <div class="container mx-auto max-w-3xl text-center bg-white rounded-3xl p-6 md:p-10 shadow-sm">
+        <h2 class="text-xl md:text-3xl font-bold text-heading mb-4">הורים יקרים, אנחנו מבינים את האתגר.</h2>
+        <p class="text-base md:text-xl leading-relaxed mb-4" style="color:#5E548ECC;">
+            איך מסבירים לילדים סקרנים על תהליכים שקורים בגוף שלהם, או על חשיבות הבריאות, מבלי להלחיץ או לשעמם אותם?
+        </p>
+        <p class="text-sm md:text-lg leading-relaxed" style="color:#5E548ECC;">
+            אתם רוצים להעניק להם ידע וכוח, אבל גם לשמור על התמימות והקסם של הילדות. בדיוק בשביל זה יצרנו את "ארץ התריס".
+        </p>
+    </div>
+</section>
+
+<!-- CHARACTERS -->
+<section id="characters" class="py-10 md:py-16 px-4 relative">
+    <div class="container mx-auto">
+        <div class="text-center mb-3">
+            <span class="text-xs md:text-sm font-bold py-1 px-4 rounded-full" style="background:rgba(199,184,255,.2);color:#5E548E;">הדמויות שיגנבו את הלב</span>
+        </div>
+        <h2 class="text-2xl md:text-4xl font-black text-center text-heading mb-3">הכירו את החברים למסע</h2>
+        <p class="text-center text-sm md:text-lg mb-8 max-w-xl mx-auto" style="color:#5E548E99;">
+            כל דמות מייצגת ערך אחר – וביחד הם לומדים שיעורי חיים שיישארו עם הילדים שלכם לתמיד.
+        </p>
+
+        <!-- Row 1 -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8 mb-3 md:mb-8">
+
+            <!-- ריס + medal -->
+            <div style="position:relative;">
+                <div style="position:absolute; top:-8px; right:-8px; width:52px; height:68px; z-index:30; filter:drop-shadow(0 3px 6px rgba(0,0,0,0.28));">
+                    <svg viewBox="0 0 64 82" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                        <polygon points="20,46 14,78 32,68 32,46" fill="#CC0000"/>
+                        <polygon points="22,46 16,78 18,78 24,46" fill="#FF4444" opacity="0.5"/>
+                        <polygon points="44,46 50,78 32,68 32,46" fill="#CC0000"/>
+                        <polygon points="42,46 48,78 46,78 40,46" fill="#FF4444" opacity="0.5"/>
+                        <circle cx="32" cy="30" r="28" fill="#E8A000"/>
+                        <circle cx="32" cy="30" r="23" fill="#FFD700"/>
+                        <text x="32" y="26" text-anchor="middle" font-size="8" font-weight="900" fill="#7B4F00" font-family="Heebo,sans-serif">הכי</text>
+                        <text x="32" y="36" text-anchor="middle" font-size="8" font-weight="900" fill="#7B4F00" font-family="Heebo,sans-serif">אהובה</text>
+                        <text x="32" y="46" text-anchor="middle" font-size="9" fill="#E8A000">★</text>
+                    </svg>
                 </div>
-
-                <!-- Trust icons -->
-                <div class="flex flex-wrap gap-4 mt-6 justify-center md:justify-start text-sm" style="color:#5E548E66;">
-                    <span>✅ הותאם לילדים בישראל</span>
-                    <span>📦 משלוח עד הבית</span>
-                    <span>🔒 רכישה מאובטחת</span>
+                <div class="character-card bg-white rounded-2xl md:rounded-3xl shadow-md overflow-hidden">
+                    <div class="flex items-end justify-center overflow-hidden" style="height:clamp(100px,28vw,208px); background:linear-gradient(160deg,#FFF0E8,#FFE0D0);">
+                        <img src="Rees.png" alt="ריס" class="w-auto object-contain" style="height:clamp(90px,26vw,192px); object-position:center 30%;">
+                    </div>
+                    <div class="p-3 md:p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-widest hidden md:block" style="color:#C7B8FF;">הגיבורה הראשית</span>
+                        <h3 class="text-base md:text-2xl font-black text-heading mt-0 md:mt-1 mb-1 md:mb-2">ריס</h3>
+                        <p class="text-xs md:text-sm leading-relaxed mb-1 hidden md:block" style="color:#5E548ECC;">סקרנית, אמיצה, ותמיד שואלת "למה?".</p>
+                        <p class="text-xs md:text-sm leading-relaxed mb-2 md:mb-3 hidden md:block" style="color:#5E548ECC;">ילדים מתאהבים בה מהרגע הראשון.</p>
+                        <div class="rounded-xl p-1.5 md:p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">💡 סקרנות כדלת לידע</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Book image -->
-            <div class="flex-1 relative z-10 floating">
-                <div class="relative mx-auto" style="max-height:650px;">
-                    <img src="book-cover.png"
-                         alt="כריכת הספר הרפתקאותיה של ריס"
-                         class="object-contain drop-shadow-2xl mx-auto"
-                         style="height:650px; width:auto; max-width:100%;">
+            <!-- ברזלן -->
+            <div class="character-card bg-white rounded-2xl md:rounded-3xl shadow-md overflow-hidden">
+                <div class="flex items-end justify-center overflow-hidden" style="height:clamp(100px,28vw,208px); background:linear-gradient(160deg,#FFF3E0,#FFE0B0);">
+                    <img src="barzelan.png" alt="ברזלן" class="w-auto object-contain" style="height:clamp(90px,26vw,192px); object-position:center 30%;">
                 </div>
-                <!-- Review bubble - rotating -->
-                <div id="review-bubble" class="absolute -bottom-4 -right-4 md:-right-8 bg-white rounded-2xl shadow-lg p-4 border"
-                     style="border-color:rgba(199,184,255,.4); min-width:200px; max-width:240px;">
+                <div class="p-3 md:p-6 text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest hidden md:block" style="color:#FFB26B;">לוחם הברזל</span>
+                    <h3 class="text-base md:text-2xl font-black text-heading mt-0 md:mt-1 mb-1 md:mb-2">ברזלן</h3>
+                    <p class="text-xs md:text-sm leading-relaxed mb-1 hidden md:block" style="color:#5E548ECC;">הלוחם האמיץ עם שריון הקשקשים.</p>
+                    <p class="text-xs md:text-sm leading-relaxed mb-2 md:mb-3 hidden md:block" style="color:#5E548ECC;">מגן על ארץ התריס מכל איום.</p>
+                    <div class="rounded-xl p-1.5 md:p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">💡 אומץ ועוצמה פנימית</div>
+                </div>
+            </div>
+
+            <!-- סלינה -->
+            <div class="character-card bg-white rounded-2xl md:rounded-3xl shadow-md overflow-hidden">
+                <div class="flex items-end justify-center overflow-hidden" style="height:clamp(100px,28vw,208px); background:linear-gradient(160deg,#E0F8F8,#C0EFEF);">
+                    <img src="selina.png" alt="סלינה" class="w-auto object-contain" style="height:clamp(90px,26vw,192px); object-position:center 30%;">
+                </div>
+                <div class="p-3 md:p-6 text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest hidden md:block" style="color:#9ED8C3;">המגינה החכמה</span>
+                    <h3 class="text-base md:text-2xl font-black text-heading mt-0 md:mt-1 mb-1 md:mb-2">סלינה</h3>
+                    <p class="text-xs md:text-sm leading-relaxed mb-1 hidden md:block" style="color:#5E548ECC;">הדמות החכמה עם המשקפיים.</p>
+                    <p class="text-xs md:text-sm leading-relaxed mb-2 md:mb-3 hidden md:block" style="color:#5E548ECC;">תמיד יודעת מה לעשות ברגעים הקשים.</p>
+                    <div class="rounded-xl p-1.5 md:p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">💡 חוכמה לפני פעולה</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
+
+            <!-- יודיד -->
+            <div class="character-card bg-white rounded-2xl md:rounded-3xl shadow-md overflow-hidden">
+                <div class="flex items-end justify-center overflow-hidden" style="height:clamp(100px,28vw,208px); background:linear-gradient(160deg,#FFF5E0,#FFE8B0);">
+                    <img src="yodid.png" alt="יודיד" class="w-auto object-contain" style="height:clamp(90px,26vw,192px); object-position:center 30%;">
+                </div>
+                <div class="p-3 md:p-6 text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest hidden md:block" style="color:#FFB26B;">החבר הנאמן</span>
+                    <h3 class="text-base md:text-2xl font-black text-heading mt-0 md:mt-1 mb-1 md:mb-2">יודיד</h3>
+                    <p class="text-xs md:text-sm leading-relaxed mb-1 hidden md:block" style="color:#5E548ECC;">הרך והחם בחבורה.</p>
+                    <p class="text-xs md:text-sm leading-relaxed mb-2 md:mb-3 hidden md:block" style="color:#5E548ECC;">תמיד שם בשבילך, בכל רגע.</p>
+                    <div class="rounded-xl p-1.5 md:p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">💡 ידידות ואמפתיה</div>
+                </div>
+            </div>
+
+            <!-- ההורים -->
+            <div class="character-card bg-white rounded-2xl md:rounded-3xl shadow-md overflow-hidden">
+                <div class="flex items-end justify-center overflow-hidden" style="height:clamp(100px,28vw,208px); background:linear-gradient(160deg,#F5F0FF,#E8DEFF);">
+                    <img src="parents.png" alt="ההורים של ריס" class="w-auto object-contain" style="height:clamp(90px,26vw,192px); object-position:center 30%;">
+                </div>
+                <div class="p-3 md:p-6 text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest hidden md:block" style="color:#C7B8FF;">עוגן הבית</span>
+                    <h3 class="text-base md:text-2xl font-black text-heading mt-0 md:mt-1 mb-1 md:mb-2">ההורים</h3>
+                    <p class="text-xs md:text-sm leading-relaxed mb-1 hidden md:block" style="color:#5E548ECC;">הבסיס החם והאוהב.</p>
+                    <p class="text-xs md:text-sm leading-relaxed mb-2 md:mb-3 hidden md:block" style="color:#5E548ECC;">ממנו ריס שואבת כוח לצאת להרפתקאות.</p>
+                    <div class="rounded-xl p-1.5 md:p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">💡 כוחה של משפחה</div>
+                </div>
+            </div>
+
+            <!-- המלכה -->
+            <div class="character-card bg-white rounded-2xl md:rounded-3xl shadow-md overflow-hidden">
+                <div class="flex items-end justify-center overflow-hidden" style="height:clamp(100px,28vw,208px); background:linear-gradient(160deg,#E8F8F0,#C8EFDF);">
+                    <img src="queen.png" alt="המלכה" class="w-auto object-contain" style="height:clamp(90px,26vw,192px); object-position:center 30%;">
+                </div>
+                <div class="p-3 md:p-6 text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest hidden md:block" style="color:#9ED8C3;">המנהיגה החכמה</span>
+                    <h3 class="text-base md:text-2xl font-black text-heading mt-0 md:mt-1 mb-1 md:mb-2">המלכה</h3>
+                    <p class="text-xs md:text-sm leading-relaxed mb-1 hidden md:block" style="color:#5E548ECC;">מלכת ארץ התריס הטובה.</p>
+                    <p class="text-xs md:text-sm leading-relaxed mb-2 md:mb-3 hidden md:block" style="color:#5E548ECC;">מכירה את סודות הממלכה.</p>
+                    <div class="rounded-xl p-1.5 md:p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">💡 מנהיגות וטוב לב</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Characters CTA -->
+        <div class="text-center mt-8 md:mt-12">
+            <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank"
+               class="cta-shimmer inline-block font-bold py-3 md:py-4 px-8 md:px-12 rounded-full shadow-md hover:shadow-lg transition">
+                הזמינו עכשיו וצאו להרפתקה ←
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="py-10 md:py-16 px-4 bg-white relative overflow-hidden">
+    <img src="Right.png" alt="" class="hidden md:block absolute right-0 bottom-0 pointer-events-none"
+         style="height:80%; width:auto; object-fit:contain; object-position:bottom right; z-index:1;">
+    <img src="Left.png" alt="" class="hidden md:block absolute left-0 bottom-0 pointer-events-none"
+         style="height:80%; width:auto; object-fit:contain; object-position:bottom left; z-index:1;">
+
+    <div class="container mx-auto max-w-3xl md:max-w-5xl relative z-10">
+        <h2 class="text-2xl md:text-4xl font-black text-center text-heading mb-6 md:mb-12">יותר מרק סיפור לפני השינה</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6">
+            <div class="flex items-start gap-3 md:gap-4 rounded-2xl p-4 md:p-6" style="background:#F5F3FF;">
+                <div class="rounded-full p-2 md:p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-base md:text-xl font-bold text-heading mb-1 md:mb-2">למידה ללא מאמץ</h3>
+                    <p class="text-sm md:text-base" style="color:#5E548ECC;">הטמעת מושגים מורכבים דרך עלילה סוחפת, ללא תחושת "שיעור" או לחץ.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-3 md:gap-4 rounded-2xl p-4 md:p-6" style="background:#F5F3FF;">
+                <div class="rounded-full p-2 md:p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-base md:text-xl font-bold text-heading mb-1 md:mb-2">חיזוק תחושת המסוגלות</h3>
+                    <p class="text-sm md:text-base" style="color:#5E548ECC;">כשהילד מבין איך גופו פועל, הוא מרגיש בטוח יותר בעצמו וביכולותיו.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-3 md:gap-4 rounded-2xl p-4 md:p-6" style="background:#F5F3FF;">
+                <div class="rounded-full p-2 md:p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-base md:text-xl font-bold text-heading mb-1 md:mb-2">זמן איכות הורה-ילד</h3>
+                    <p class="text-sm md:text-base" style="color:#5E548ECC;">הזדמנות נהדרת לשיח פתוח, שאלות משותפות וקריאה מחבקת לפני השינה.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-3 md:gap-4 rounded-2xl p-4 md:p-6" style="background:#F5F3FF;">
+                <div class="rounded-full p-2 md:p-3 shrink-0" style="background:rgba(158,216,195,.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-base md:text-xl font-bold text-heading mb-1 md:mb-2">פיתוח הדמיון והסקרנות</h3>
+                    <p class="text-sm md:text-base" style="color:#5E548ECC;">איורים מרהיבים ועולם עשיר שמעודדים חשיבה יצירתית.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="py-10 md:py-16 px-4">
+    <div class="container mx-auto max-w-4xl rounded-3xl p-6 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-8 border-2"
+         style="background:rgba(199,184,255,.1); border-color:rgba(199,184,255,.3);">
+        <div class="shrink-0" style="width:clamp(100px,25vw,180px); height:clamp(100px,25vw,180px); border-radius:50%; overflow:hidden; border:4px solid white; box-shadow:0 0 0 4px rgba(199,184,255,0.5), 0 8px 24px rgba(94,84,142,0.2); clip-path:circle(50%);">
+            <img src="data:image/jpeg;base64,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cHRpb25zAAAAFwAAAABDcHRuYm9vbAAAAAAAQ2xicmJvb2wAAAAAAFJnc01ib29sAAAAAABDcm5DYm9vbAAAAAAAQ250Q2Jvb2wAAAAAAExibHNib29sAAAAAABOZ3R2Ym9vbAAAAAAARW1sRGJvb2wAAAAAAEludHJib29sAAAAAABCY2tnT2JqYwAAAAEAAAAAAABSR0JDAAAAAwAAAABSZCAgZG91YkBv4AAAAAAAAAAAAEdybiBkb3ViQG/gAAAAAAAAAAAAQmwgIGRvdWJAb+AAAAAAAAAAAABCcmRUVW50RiNSbHQAAAAAAAAAAAAAAABCbGQgVW50RiNSbHQAAAAAAAAAAAAAAABSc2x0VW50RiNQeGxAUgAAAAAAAAAAAAp2ZWN0b3JEYXRhYm9vbAEAAAAAUGdQc2VudW0AAAAAUGdQcwAAAABQZ1BDAAAAAExlZnRVbnRGI1JsdAAAAAAAAAAAAAAAAFRvcCBVbnRGI1JsdAAAAAAAAAAAAAAAAFNjbCBVbnRGI1ByY0BZAAAAAAAAAAAAEGNyb3BXaGVuUHJpbnRpbmdib29sAAAAAA5jcm9wUmVjdEJvdHRvbWxvbmcAAAAAAAAADGNyb3BSZWN0TGVmdGxvbmcAAAAAAAAADWNyb3BSZWN0UmlnaHRsb25nAAAAAAAAAAtjcm9wUmVjdFRvcGxvbmcAAAAAADhCSU0D7QAAAAAAEABIAAAAAQACAEgAAAABAAI4QklNBCYAAAAAAA4AAAAAAAAAAAAAP4AAADhCSU0EDQAAAAAABAAAAB44QklNBBkAAAAAAAQAAAAeOEJJTQPzAAAAAAAJAAAAAAAAAAABADhCSU0nEAAAAAAACgABAAAAAAAAAAI4QklNA/UAAAAAAEgAL2ZmAAEAbGZmAAYAAAAAAAEAL2ZmAAEAoZmaAAYAAAAAAAEAMgAAAAEAWgAAAAYAAAAAAAEANQAAAAEALQAAAAYAAAAAAAE4QklNA/gAAAAAAHAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAOEJJTQQAAAAAAAACAAA4QklNBAIAAAAAAAIAADhC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OmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjcuMCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDI2LTAyLTI1VDAxOjU2OjQ0KzAyOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNi0wMi0yNVQwMjoxMDoxNSswMjowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyNi0wMi0yNVQwMjoxMDoxNSswMjowMCIgZGM6Zm9ybWF0PSJpbWFnZS9qcGVnIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY4MmE0NmE4LWViM2UtZGQ0Ny1iZTkxLTcxZTVhOTg1ZDVhOCIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmJiZjVhOWM4LTUxY2QtMTU0Ni04OWZiLTQyM2YyZGEwNGM1MiIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjZiMDg4ZmM3LWIxMmEtNDE0OS1hMzY1LTUxNTgyOWQ1ZmRlMSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NmIwODhmYzctYjEyYS00MTQ5LWEzNjUtNTE1ODI5ZDVmZGUxIiBzdEV2dDp3aGVuPSIyMDI2LTAyLTI1VDAxOjU2OjQ0KzAyOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjcuMCAoV2luZG93cykiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL2pwZWciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjY4MmE0NmE4LWViM2UtZGQ0Ny1iZTkxLTcxZTVhOTg1ZDVhOCIgc3RFdnQ6d2hlbj0iMjAyNi0wMi0yNVQwMjoxMDoxNSswMjowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI3LjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8P3hwYWNrZXQgZW5kPSJ3Ij8+/+4AIUFkb2JlAGRAAAAAAQMAEAMCAwYAAAAAAAAAAAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwMBAQEBAQEBAQEBAQICAQICAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA//CABEIAJAAiAMBEQACEQEDEQH/xADiAAABBAMBAQEAAAAAAAAAAAAABgcICQEDBAUKAgEAAQQDAQEAAAAAAAAAAAAAAAQFBgcBAgMICRAAAAYBBAEDBQACAwAAAAAAAQIDBAUGBwAREgggMCETEDEUFQkiMjMkFxEAAQQB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" alt="ד״ר יניב עובדיה"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center 5%; display:block;">
+        </div>
+        <div class="text-center md:text-right">
+            <h3 class="text-xl md:text-2xl font-bold text-heading mb-3">דבר המחבר, ד"ר יניב עובדיה</h3>
+            <p class="text-base md:text-lg leading-relaxed italic" style="color:#5E548ECC;">
+                "כתבתי את 'הרפתקאותיה של ריס' מתוך אמונה עמוקה שכל ילד זכאי להבין את הכוח הפנימי שטמון בו. כשאנחנו מחברים ידע עם קסם, אנחנו נותנים להם כלים לחיים."
+            </p>
+            <p class="font-medium mt-3 text-heading">אבא, רופא ואיש חינוך</p>
+        </div>
+    </div>
+</section>
+
+<!-- ORDER -->
+<section id="order" class="py-12 md:py-20 px-4 relative overflow-hidden">
+    <div class="absolute bottom-0 inset-x-0 h-3/4 rounded-t-[4rem] -z-10" style="background:rgba(199,184,255,.2);"></div>
+    <div class="container mx-auto max-w-xl md:max-w-2xl relative z-10">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-4xl lg:text-5xl font-black text-heading mb-3 leading-tight">
+                תנו לילדכם את ההרפתקה<br>שתשנה את הדרך שהם רואים את עצמם.
+            </h2>
+            <p class="text-base md:text-lg" style="color:#5E548E99;">הזמינו היום – ותקבלו את הספר בדואר תוך ימים ספורים.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 md:p-10 order-glow">
+            <!-- What you get -->
+            <div class="mb-5">
+                <p class="text-xs font-bold uppercase tracking-widest mb-2" style="color:#5E548E66;">מה מקבלים:</p>
+                <ul class="space-y-2" style="color:#5E548ECC;">
+                    <li class="flex items-center gap-3 text-sm md:text-base"><span style="color:#9ED8C3;" class="text-lg">✓</span> הספר המודפס "הרפתקאותיה של ריס בארץ התריס"</li>
+                    <li class="flex items-center gap-3 text-sm md:text-base"><span style="color:#9ED8C3;" class="text-lg">✓</span> איורים מרהיבים בצבע מלא לאורך כל הספר</li>
+                </ul>
+            </div>
+
+            <hr style="border-color:rgba(199,184,255,.3);" class="mb-5">
+
+            <!-- Book + Price -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
+                <img src="EDIT-HERE.png" alt="הספר" class="object-contain rounded-xl"
+                     style="width:clamp(80px,22vw,160px); filter:drop-shadow(0 8px 18px rgba(94,84,142,.3));">
+                <div class="text-center sm:text-right">
+                    <div class="flex items-center gap-3 justify-center sm:justify-start">
+                        <span class="text-3xl md:text-4xl font-black text-heading">₪48</span>
+                        <span class="price-tag text-xl md:text-2xl font-bold" style="color:#5E548E40;">₪68</span>
+                    </div>
+                    <p class="text-sm font-bold mt-1" style="color:#FF6B6B;">חסכון של ₪20 – מחיר השקה מיוחד!</p>
+                    <div class="rounded-2xl p-2 mt-2 text-right" style="background:rgba(158,216,195,.1);border:1px solid rgba(158,216,195,.4);">
+                        <p class="text-xs font-medium" style="color:#5E548E99;">⏳ המחיר עולה בקרוב</p>
+                        <p class="text-xs" style="color:#5E548E66;">נותרו מעט עותקים</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank"
+               class="cta-shimmer block w-full text-lg md:text-xl font-black py-4 md:py-5 rounded-2xl text-center shadow-lg mb-4">
+                כן! אני רוצה את הספר ←
+            </a>
+
+            <div class="flex justify-center gap-4 md:gap-6 flex-wrap text-xs" style="color:#5E548E66;">
+                <span>🔒 תשלום מאובטח</span>
+                <span>📦 משלוח עד 5 ימי עסקים</span>
+                <span>❤️ מאות הורים מרוצים</span>
+            </div>
+
+            <!-- Reviews -->
+            <div class="mt-6 pt-5 space-y-3" style="border-top:1px solid rgba(199,184,255,.2);">
+                <p class="text-xs font-bold uppercase tracking-widest text-center mb-3" style="color:#5E548E66;">מה אמרו הורים אחרים?</p>
+                <div class="rounded-xl p-3 md:p-4" style="background:#F5F3FF;">
                     <div class="flex mb-1"><span class="star text-sm">★★★★★</span></div>
-                    <p id="review-text" class="text-xs font-medium" style="color:#5E548ECC;">"הילדה שלי ביקשה לקרוא שלוש פעמים ברצף!"</p>
-                    <p id="review-author" class="text-xs mt-1" style="color:#5E548E66;">— שירה, אמא לבת 7</p>
+                    <p class="text-sm" style="color:#5E548ECC;">"הבן שלי ביקש לקרוא כל לילה. סוף סוף ספר שהוא לא מרשה לי לסגור!"</p>
+                    <p class="text-xs mt-1" style="color:#5E548E66;">— מיכל ג., אמא לבן 6</p>
+                </div>
+                <div class="rounded-xl p-3 md:p-4" style="background:#F5F3FF;">
+                    <div class="flex mb-1"><span class="star text-sm">★★★★★</span></div>
+                    <p class="text-sm" style="color:#5E548ECC;">"אחרי הספר הבת שלי התחילה לשאול שאלות על הגוף שלה. הרגשתי שנפתח עולם שלם."</p>
+                    <p class="text-xs mt-1" style="color:#5E548E66;">— רונית מ., אמא לבת 8</p>
                 </div>
             </div>
         </div>
-    </section>
+        <p class="text-center text-sm mt-5" style="color:#5E548E66;">לא בטוחים? שלחו לנו הודעה – אנחנו כאן לכל שאלה.</p>
+    </div>
+</section>
 
-    <!-- ===== PROBLEM ===== -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-3xl text-center bg-white rounded-3xl p-10 shadow-sm">
-            <h2 class="text-3xl font-bold text-heading mb-6">הורים יקרים, אנחנו מבינים את האתגר.</h2>
-            <p class="text-xl leading-relaxed mb-6" style="color:#5E548ECC;">
-                איך מסבירים לילדים סקרנים על תהליכים שקורים בגוף שלהם, או על חשיבות הבריאות, מבלי להלחיץ או לשעמם אותם?
-            </p>
-            <p class="text-lg leading-relaxed" style="color:#5E548ECC;">
-                אתם רוצים להעניק להם ידע וכוח, אבל גם לשמור על התמימות והקסם של הילדות. בדיוק בשביל זה יצרנו את "ארץ התריס" – מקום שבו ידע פוגש דמיון.
-            </p>
+<!-- FOOTER -->
+<footer class="py-6 md:py-8 text-center text-xs md:text-sm" style="background:#F5F3FF;color:#5E548E66;">
+    <div class="container mx-auto px-4">
+        <p>© 2024 הרפתקאותיה של ריס בארץ התריס. כל הזכויות שמורות.</p>
+        <div class="mt-3 flex justify-center gap-4">
+            <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">תקנון</a>
+            <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">מדיניות פרטיות</a>
+            <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">צור קשר</a>
         </div>
-    </section>
-
-    <!-- ===== CHARACTERS ===== -->
-    <section id="characters" class="py-16 px-4 relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-50 rounded-full blur-3xl -z-10"
-             style="background:rgba(199,184,255,.08);"></div>
-
-        <div class="container mx-auto">
-            <div class="text-center mb-4">
-                <span class="text-sm font-bold py-1 px-4 rounded-full"
-                      style="background:rgba(199,184,255,.2);color:#5E548E;">הדמויות שיגנבו את הלב</span>
-            </div>
-            <h2 class="text-3xl md:text-4xl font-black text-center text-heading mb-4">הכירו את החברים למסע</h2>
-            <p class="text-center text-lg mb-12 max-w-xl mx-auto" style="color:#5E548E99;">
-                כל דמות מייצגת ערך אחר – וביחד הם לומדים (ומלמדים) שיעורי חיים שיישארו עם הילדים שלכם לתמיד.
-            </p>
-
-            <!-- Row 1: 3 characters -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0 mb-8">
-
-                <!-- ריס – with medal -->
-                <div style="position:relative;">
-                    <!-- Medal OUTSIDE the card, above overflow-hidden -->
-                    <div style="position:absolute; top:-10px; right:-10px; width:64px; height:82px; z-index:30; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
-                        <svg viewBox="0 0 64 82" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-                          <!-- Left ribbon -->
-                          <polygon points="20,46 14,78 32,68 32,46" fill="#CC0000"/>
-                          <polygon points="22,46 16,78 18,78 24,46" fill="#FF4444" opacity="0.5"/>
-                          <!-- Right ribbon -->
-                          <polygon points="44,46 50,78 32,68 32,46" fill="#CC0000"/>
-                          <polygon points="42,46 48,78 46,78 40,46" fill="#FF4444" opacity="0.5"/>
-                          <!-- Medal circle outer -->
-                          <circle cx="32" cy="30" r="28" fill="#E8A000"/>
-                          <!-- Medal circle inner -->
-                          <circle cx="32" cy="30" r="23" fill="#FFD700"/>
-                          <!-- Text -->
-                          <text x="32" y="26" text-anchor="middle" font-size="8" font-weight="900" fill="#7B4F00" font-family="Heebo,sans-serif">הכי</text>
-                          <text x="32" y="36" text-anchor="middle" font-size="8" font-weight="900" fill="#7B4F00" font-family="Heebo,sans-serif">אהובה</text>
-                          <text x="32" y="46" text-anchor="middle" font-size="9" fill="#E8A000">★</text>
-                        </svg>
-                    </div>
-                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden relative">
-                    <div class="h-52 flex items-end justify-center overflow-hidden"
-                         style="background:linear-gradient(160deg,#FFF0E8,#FFE0D0);">
-                        <img src="Rees.png" alt="ריס" class="h-48 w-auto object-contain object-bottom" style="object-position: center 30%;">
-                    </div>
-                    <div class="p-6 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#C7B8FF;">הגיבורה הראשית</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">ריס</h3>
-                        <p class="text-sm leading-relaxed mb-1" style="color:#5E548ECC;">סקרנית, אמיצה, ותמיד שואלת "למה?".</p>
-                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">ילדים מתאהבים בה מהרגע הראשון.</p>
-                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מלמדת: להאמין בסקרנות כדלת לידע
-                        </div>
-                    </div>
-                </div>
-                </div><!-- end medal wrapper -->
-
-                <!-- ברזלן -->
-                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
-                    <div class="h-52 flex items-end justify-center overflow-hidden"
-                         style="background:linear-gradient(160deg,#FFF3E0,#FFE0B0);">
-                        <img src="barzelan.png" alt="ברזלן" class="h-48 w-auto object-contain object-bottom" style="object-position: center 30%;">
-                    </div>
-                    <div class="p-6 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FFB26B;">לוחם הברזל</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">ברזלן</h3>
-                        <p class="text-sm leading-relaxed mb-1" style="color:#5E548ECC;">הלוחם האמיץ עם שריון הקשקשים.</p>
-                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">מגן על ארץ התריס מכל איום.</p>
-                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מלמד: אומץ ועוצמה פנימית
-                        </div>
-                    </div>
-                </div>
-
-                <!-- סלינה -->
-                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
-                    <div class="h-52 flex items-end justify-center overflow-hidden"
-                         style="background:linear-gradient(160deg,#E0F8F8,#C0EFEF);">
-                        <img src="selina.png" alt="סלינה" class="h-48 w-auto object-contain object-bottom" style="object-position: center 30%;">
-                    </div>
-                    <div class="p-6 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#9ED8C3;">המגינה החכמה</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">סלינה</h3>
-                        <p class="text-sm leading-relaxed mb-1" style="color:#5E548ECC;">הדמות החכמה עם המשקפיים.</p>
-                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">תמיד יודעת מה לעשות ברגעים הקשים.</p>
-                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מלמדת: חוכמה וחשיבה לפני פעולה
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Row 2: 3 characters -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0">
-
-                <!-- יודיד -->
-                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
-                    <div class="h-52 flex items-end justify-center overflow-hidden"
-                         style="background:linear-gradient(160deg,#FFF5E0,#FFE8B0);">
-                        <img src="yodid.png" alt="יודיד" class="h-48 w-auto object-contain object-bottom" style="object-position: center 30%;">
-                    </div>
-                    <div class="p-6 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#FFB26B;">החבר הנאמן</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">יודיד</h3>
-                        <p class="text-sm leading-relaxed mb-1" style="color:#5E548ECC;">הרך והחם בחבורה.</p>
-                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">תמיד שם בשבילך, בכל רגע ובכל מצב.</p>
-                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מלמד: ידידות ואמפתיה אמיתית
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ההורים -->
-                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
-                    <div class="h-52 flex items-end justify-center overflow-hidden"
-                         style="background:linear-gradient(160deg,#F5F0FF,#E8DEFF);">
-                        <img src="parents.png" alt="ההורים של ריס" class="h-48 w-auto object-contain object-bottom" style="object-position: center 30%;">
-                    </div>
-                    <div class="p-6 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#C7B8FF;">עוגן הבית</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">ההורים של ריס</h3>
-                        <p class="text-sm leading-relaxed mb-1" style="color:#5E548ECC;">הבסיס החם והאוהב.</p>
-                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">ממנו ריס שואבת כוח לצאת להרפתקאות.</p>
-                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מלמדים: כוחה של משפחה ואהבה
-                        </div>
-                    </div>
-                </div>
-
-                <!-- המלכה -->
-                <div class="character-card bg-white rounded-3xl shadow-lg overflow-hidden">
-                    <div class="h-52 flex items-end justify-center overflow-hidden"
-                         style="background:linear-gradient(160deg,#E8F8F0,#C8EFDF);">
-                        <img src="queen.png" alt="המלכה" class="h-48 w-auto object-contain object-bottom" style="object-position: center 30%;">
-                    </div>
-                    <div class="p-6 text-center">
-                        <span class="text-xs font-bold uppercase tracking-widest" style="color:#9ED8C3;">המנהיגה החכמה</span>
-                        <h3 class="text-2xl font-black text-heading mt-1 mb-2">המלכה</h3>
-                        <p class="text-sm leading-relaxed mb-1" style="color:#5E548ECC;">מלכת ארץ התריס הטובה והנדיבה.</p>
-                        <p class="text-sm leading-relaxed mb-3" style="color:#5E548ECC;">מכירה את סודות הממלכה ומחלקת מטובה.</p>
-                        <div class="rounded-xl p-2 text-xs font-medium" style="background:#F5F3FF;color:#5E548E99;">
-                            💡 מלמדת: מנהיגות, נתינה וטוב לב
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <p class="mb-4 text-sm" style="color:#5E548E66;">מוכנים לפגוש אותם בספר?</p>
-                <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank" class="cta-shimmer inline-block font-bold py-4 px-12 rounded-full shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
-                    הזמינו עכשיו וצאו להרפתקה ←
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== BENEFITS ===== -->
-    <section class="py-16 px-4 bg-white" style="position:relative; overflow:hidden;">
-        <!-- Decorative character pinned to right edge -->
-        <img src="Right.png" alt=""
-             style="position:absolute; right:0; bottom:0; height:85%; width:auto; object-fit:contain; object-position:bottom right; pointer-events:none; z-index:1;">
-        <!-- Decorative character pinned to left edge -->
-        <img src="Left.png" alt=""
-             style="position:absolute; left:0; bottom:0; height:85%; width:auto; object-fit:contain; object-position:bottom left; pointer-events:none; z-index:1;">
-        <div class="container mx-auto max-w-5xl" style="position:relative; z-index:2;">
-            <h2 class="text-3xl md:text-4xl font-black text-center text-heading mb-12">יותר מרק סיפור לפני השינה</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
-                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-heading mb-2">למידה ללא מאמץ</h3>
-                        <p style="color:#5E548ECC;">הטמעת מושגים מורכבים דרך עלילה סוחפת, ללא תחושת "שיעור" או לחץ.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
-                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-heading mb-2">חיזוק תחושת המסוגלות</h3>
-                        <p style="color:#5E548ECC;">כשהילד מבין איך גופו פועל, הוא מרגיש בטוח יותר בעצמו וביכולותיו.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
-                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-heading mb-2">זמן איכות הורה-ילד</h3>
-                        <p style="color:#5E548ECC;">הזדמנות נהדרת לשיח פתוח, שאלות משותפות וקריאה מחבקת לפני השינה.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#F5F3FF;">
-                    <div class="rounded-full p-3 shrink-0" style="background:rgba(158,216,195,.2);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-heading mb-2">פיתוח הדמיון והסקרנות</h3>
-                        <p style="color:#5E548ECC;">איורים מרהיבים ועולם עשיר שמעודדים חשיבה יצירתית.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== AUTHOR ===== -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-4xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 border-2"
-             style="background:rgba(199,184,255,.1);border-color:rgba(199,184,255,.3);">
-            <div style="width:192px; height:192px; border-radius:50%; overflow:hidden !important; border:5px solid white; box-shadow: 0 0 0 5px rgba(199,184,255,0.5), 0 8px 24px rgba(94,84,142,0.25); background:#ddd; flex-shrink:0; display:block; clip-path:circle(50%);">
-                <img src="data:image/jpeg;base64,/9j/4QzGRXhpZgAATU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUAAAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAAExAAIAAAAfAAAAcgEyAAIAAAAUAAAAkYdpAAQAAAABAAAAqAAAANQACvyAAAAnEAAK/IAAACcQQWRvYmUgUGhvdG9zaG9wIDI3LjAgKFdpbmRvd3MpADIwMjY6MDI6MjUgMDI6MTA6MTUAAAAAAAOgAQADAAAAAf//AACgAgAEAAAAAQAAAIigAwAEAAAAAQAAAJAAAAAAAAAABgEDAAMAAAABAAYAAAEaAAUAAAABAAABIgEbAAUAAAABAAABKgEoAAMAAAABAAIAAAIBAAQAAAABAAABMgICAAQAAAABAAALjAAAAAAAAABIAAAAAQAAAEgAAAAB/9j/7QAMQWRvYmVfQ00AAv/uAA5BZG9iZQBkgAAAAAH/2wCEAAwICAgJCAwJCQwRCwoLERUPDAwPFRgTExUTExgRDAwMDAwMEQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwBDQsLDQ4NEA4OEBQODg4UFA4ODg4UEQwMDAwMEREMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDP/AABEIAJAAiAMBIgACEQEDEQH/3QAEAAn/xAE/AAABBQEBAQEBAQAAAAAAAAADAAECBAUGBwgJCgsBAAEFAQEBAQEBAAAAAAAAAAEAAgMEBQYHCAkKCxAAAQQBAwIEAgUHBggFAwwzAQACEQMEIRIxBUFRYRMicYEyBhSRobFCIyQVUsFiMzRygtFDByWSU/Dh8WNzNRaisoMmRJNUZEXCo3Q2F9JV4mXys4TD03Xj80YnlKSFtJXE1OT0pbXF1eX1VmZ2hpamtsbW5vY3R1dnd4eXp7fH1+f3EQACAgECBAQDBAUGBwcGBTUBAAIRAyExEgRBUWFxIhMFMoGRFKGxQiPBUtHwMyRi4XKCkkNTFWNzNPElBhaisoMHJjXC0kSTVKMXZEVVNnRl4vKzhMPTdePzRpSkhbSVxNTk9KW1xdXl9VZmdoaWprbG1ub2JzdHV2d3h5ent8f/2gAMAwEAAhEDEQA/APVUkkklKSSSSUpMSGiSYA5JQsrKrxavUs+DWjkn91qxMnJuzTFntrHFY4/tfvJspiK+EDLybuX9Y+nY0taXZDx+bSN3/gh21f8ATWbZ9bsz/BdO0nl9wB/zWMf/ANWnGMOwTHFHgovdLKMMUtH1vqJjLxbKfFzCLAP/AD2//oLaxc3FzK/UxrW2t77TqPJzfpNXOWYbHcgITaXY1guoJrsH5zf9fd/bRjlPVEsI6PXpLK6Z1kZDhjZUV5J+g4aNsj9yfoWt/Oq/7bWopQbYSCN10kkkUKSSSSUpJJJJT//Q9VSSSSUpJJVep2OqwLnNMO27Qf6x2f8AfkioOLl5LsvMdZzWyWUjy/Of/wBcci006Kvjs0HlotBgiFWJs2W3EUKC4q0T+kpiYUtYTqCLazquSq1tekq+5V7WyCmkJtx86oWVlrZa/lrgYIcPouH8pbv1c6nZn4Jbkf0rGd6Vx/e0llv/AFxn/gix8gRuPgj/AFbLq+p3sH0Lqg4/1mGG/wDRtUmOXRiyjS3p0kklKwqSSSSUpJJJJT//0fVUkkklKVDrRjBI8XsH4q+sbrdz3vrxwAGNeHE9yYcmzPpK6AJkGoxza2BzjtaNSVFuZlPeXVVO2jQDaST5ypWVbxBHt0n5LOyHdas1rZ6TQ4tbXAfLQJD9xPpV/wBTYoYhsl18bOuc6LKnVx+8OVeJHK57GZnNDPUeS8sJs0AAd+bt1duWrkZD24jnt1eGyPjCKKR5nV6KDtIJdIAgSPBVXdY2va2+k11v4tBBaCf3vzmqu1+Z9ndYx43ta0taQTvJI3/zf/klVqz8t2udjDY9+xwZJMdrXNfL6/7NqNaWrrTftLXlxBkHwT9Hfs6vSP3g5v3tc7/vqHj4xpYWCS0F0E+ahj2fZ+rUWbS5rSSQOdWuZpP9ZCOhRIWKeySQsbJrya/UrmJIIPYhFU4a5FaFdJJJJCkkkklP/9L1VJJJJSlj9Tbuue79zbC2FldSYfUs1gFsx46QmZNmTCfV9ENQBbqiNbCDj+4A+CugDaFEGclq2sbzESo3sijTsETLs2Nloa5wHta8kAnw3ND9qFfltGGXtqL3bZFYLRJj6PqO9iKmGIxrW6CR2IRX11O5b+Cjgva4gAAS0Oe1p3Brj+ZvVqxsBLooufe0NZA4WdE3D4RPxV7KMSqjGuduLSBBaTPgPcgkbh6TpLQOn0x3bJ+JV1Bw2eni1MiIYJHyRlNEaBqzNyJ7lSSSSctUkkkkp//T9VTJJJKUoXUstEOU+EklOLjN2gt8DH3Kd95aIHZPa015NrexO4fB2qFa1tg2H88QVXOhbQNgNdzn2/SPxkp3MfscDtDIG0yBqNNEFvTK63Ete9rZnaXOgf1fd7Uc4jZkOM+En/vyIXVHuiZc+mGnjkK7VkmwQe4lZd2DkTpkPY08tAaT/nOar1TdlQcfpNbtQKDp4oMrU/EwrvS+l1PoryLCSXEu2aRz7e3kqGQ7awk8gErpaKxVRXWOGNDR8gnYxZLHlkQBXVIkkkpmBSSSSSlJJJJKf//U9VSSSSUpJMnSU0upVfofWaPfX+IP0gsxt7S7XQeK28lu/Hsb4tP5FzuVU6N9f0j24BKiyDVmxnR0GFh51nsoGo7pkx4LOoz2NfttOx/dp08u6t/a6/pFwHhrymL7S27QJHZVHXSYnT+5Ay81gJLfc6IDQefgq1TLrNHmO5hArgyyrt5IEwOT5Lsm/REeC5J2O1lZ07aBbfS+ob9uJcf0rWw13720e7+0pMXVhzyETEE7uokkkpWJSSSSSlJJJJKf/9X1VJJJJSkkkklMXuDWFxMADVYP06WlvxC0c20vPpsOg5HisfpOR9optBEGm62kj+o8tZ/nV7EyYsX2NL8MhxEMzjUZECxgJBBBPI+aazplREGQFbrbBKK5o2qJncY4TK5DAB5wrdGP6bAXclWm0bn7ndlI173hg0J5PgEuG1cQAa7cQ3E2HRjOO8u/8wWP1V92NZSWE12tcXscPLTRdXAaA1ujRoFl9XwWZlcAe5k7D4HxVzkxGOQcW3Vyue48gMonUbB0+k9Qbn4bLuLIi1ng7v8A2f3VdXP9Axb8bKuaY9P0q2iDIJBcS7/puW8HHuEs0IxySEfl6M2CcpY4mXzbFkkmkJ1GyqSSSSU//9b1VMSBqdEKy6DtZqe57KEOcZcZSUkde3hup/BCusdsLieOykAqnUX5NdIGMWtteYDnt3AR/JlqIFmlk5VEloZtljQC0wWgvafMCVj/AFdyD9pzXbS1l2U+xrTyA8Mez/orYdVb1Do3qve12QQ9jrGDa0lr3Vthku/dWa3H9LMy66yfo02NnmQz03D/ADq0cwAx8P6QOv0Ryx/WDsYfm7zRBkIgE8oOO4vx2P8AEKe4tVZupHQ1soLgWNcT9J3+oT5Drfs73VAGyIq3GBvP0C8+72s+msvp3VS4nFz7W2Oa6KcsQ1tkfmv/AHX/APn3/jVYxYZSiZAXw7tLnM8YgQJri6l1W5I2Q8weJ81NsHgyqeRW9sNjcNdQoUNfva1stc9wH3auU8IDh4gWpDKbESLdjGpDN1n51kT8B9FGTgQAPBMeVCTZbwAApUpB/imM9ko8UFMwQUkOIMjRJKlW/wD/1/TGtUwEwTyiheFW6hV6uK4RJYd0eI4c3/NKshUOr3vY2ihmhusG8+FbffZ/n+ytOgCZCluSuCV9nnOh9Sbji8EPsx77Hua0R7dn6JjmCf8ADen72rWzMB73DIoeA+ZDXCNzYjY535qxeoYn7PZZk4tbiyYbU0Ey5xPHP9dZFXVvrgKgKrbXuZo1tlTXSezXOsa1/wD01oT5b3QZwI1FS4mhizHCRCdmjpT3OJ+joDHaFpMgqpZ1zpgvaz7RU+Dq1ri4/dU16xrq+uZ+yvMc01hoOQMYODI/dc33WerkWf2Ksf8A41a1HScLHxRjV1AOs1eQIOniVWHK44D1niPaPTzbMucyZJcGMcAA9U5flFyev9cyM2ksxGeligiveeXOPutj83a2tuxU8Ku6+1gdDWVskhogH93c385aXVcQ3ZePgYzP0dLS91bdAJ/8xb/00fBxjXS9zmua9zzLXDWG+xqtnJDFy1RAEpfb6nK5nHLNzBvWMfS3elY+U60V12EY7G+9p90ae0Vk/RWvTiOZaHOIIbwQFLAx/Qx2giHu9z/j4f2VZWaZF1OX5aOOEQbJ3WTASfknKZp1+Sa2V4TKSZJSySdJJT//2f/tFQhQaG90b3Nob3AgMy4wADhCSU0EJQAAAAAAEAAAAAAAAAAAAAAAAAAAAAA4QklNBDoAAAAAAOUAAAAQAAAAAQAAAAAAC3ByaW50T3V0cHV0AAAABQAAAABQc3RTYm9vbAEAAAAASW50ZWVudW0AAAAASW50ZQAAAABDbHJtAAAAD3ByaW50U2l4dGVlbkJpdGJvb2wAAAAAC3ByaW50ZXJOYW1lVEVYVAAAAAEAAAAAAA9wcmludFByb29mU2V0dXBPYmpjAAAADABQAHIAbwBvAGYAIABTAGUAdAB1AHAAAAAAAApwcm9vZlNldHVwAAAAAQAAAABCbHRuZW51bQAAAAxidWlsdGluUHJvb2YAAAAJcHJvb2ZDTVlLADhCSU0EOwAAAAACLQAAABAAAAABAAAAAAAScHJpbnRPdXRwdXRPcHRpb25zAAAAFwAAAABDcHRuYm9vbAAAAAAAQ2xicmJvb2wAAAAAAFJnc01ib29sAAAAAABDcm5DYm9vbAAAAAAAQ250Q2Jvb2wAAAAAAExibHNib29sAAAAAABOZ3R2Ym9vbAAAAAAARW1sRGJvb2wAAAAAAEludHJib29sAAAAAABCY2tnT2JqYwAAAAEAAAAAAABSR0JDAAAAAwAAAABSZCAgZG91YkBv4AAAAAAAAAAAAEdybiBkb3ViQG/gAAAAAAAAAAAAQmwgIGRvdWJAb+AAAAAAAAAAAABCcmRUVW50RiNSbHQAAAAAAAAAAAAAAABCbGQgVW50RiNSbHQAAAAAAAAAAAAAAABSc2x0VW50RiNQeGxAUgAAAAAAAAAAAAp2ZWN0b3JEYXRhYm9vbAEAAAAAUGdQc2VudW0AAAAAUGdQcwAAAABQZ1BDAAAAAExlZnRVbnRGI1JsdAAAAAAAAAAAAAAAAFRvcCBVbnRGI1JsdAAAAAAAAAAAAAAAAFNjbCBVbnRGI1ByY0BZAAAAAAAAAAAAEGNyb3BXaGVuUHJpbnRpbmdib29sAAAAAA5jcm9wUmVjdEJvdHRvbWxvbmcAAAAAAAAADGNyb3BSZWN0TGVmdGxvbmcAAAAAAAAADWNyb3BSZWN0UmlnaHRsb25nAAAAAAAAAAtjcm9wUmVjdFRvcGxvbmcAAAAAADhCSU0D7QAAAAAAEABIAAAAAQACAEgAAAABAAI4QklNBCYAAAAAAA4AAAAAAAAAAAAAP4AAADhCSU0EDQAAAAAABAAAAB44QklNBBkAAAAAAAQAAAAeOEJJTQPzAAAAAAAJAAAAAAAAAAABADhCSU0nEAAAAAAACgABAAAAAAAAAAI4QklNA/UAAAAAAEgAL2ZmAAEAbGZmAAYAAAAAAAEAL2ZmAAEAoZmaAAYAAAAAAAEAMgAAAAEAWgAAAAYAAAAAAAEANQAAAAEALQAAAAYAAAAAAAE4QklNA/gAAAAAAHAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAOEJJTQQAAAAAAAACAAA4QklNBAIAAAAAAAIAADhC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OmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjcuMCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDI2LTAyLTI1VDAxOjU2OjQ0KzAyOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNi0wMi0yNVQwMjoxMDoxNSswMjowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyNi0wMi0yNVQwMjoxMDoxNSswMjowMCIgZGM6Zm9ybWF0PSJpbWFnZS9qcGVnIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY4MmE0NmE4LWViM2UtZGQ0Ny1iZTkxLTcxZTVhOTg1ZDVhOCIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmJiZjVhOWM4LTUxY2QtMTU0Ni04OWZiLTQyM2YyZGEwNGM1MiIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjZiMDg4ZmM3LWIxMmEtNDE0OS1hMzY1LTUxNTgyOWQ1ZmRlMSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NmIwODhmYzctYjEyYS00MTQ5LWEzNjUtNTE1ODI5ZDVmZGUxIiBzdEV2dDp3aGVuPSIyMDI2LTAyLTI1VDAxOjU2OjQ0KzAyOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjcuMCAoV2luZG93cykiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL2pwZWciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjY4MmE0NmE4LWViM2UtZGQ0Ny1iZTkxLTcxZTVhOTg1ZDVhOCIgc3RFdnQ6d2hlbj0iMjAyNi0wMi0yNVQwMjoxMDoxNSswMjowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI3LjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8P3hwYWNrZXQgZW5kPSJ3Ij8+/+4AIUFkb2JlAGRAAAAAAQMAEAMCAwYAAAAAAAAAAAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwMBAQEBAQEBAQEBAQICAQICAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA//CABEIAJAAiAMBEQACEQEDEQH/xADiAAABBAMBAQEAAAAAAAAAAAAABgcICQEDBAUKAgEAAQQDAQEAAAAAAAAAAAAAAAQFBgcBAgMICRAAAAYBBAEDBQACAwAAAAAAAQIDBAUGBwAREgggMCETEDEUFQkiMjMkFxEAAQQB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" alt="ד״ר יניב עובדיה"
-                     style="width:192px; height:192px; object-fit:cover; object-position:center 5%; display:block; margin:0; padding:0;">
-            </div>
-            <div class="text-center md:text-right">
-                <h3 class="text-2xl font-bold text-heading mb-4">דבר המחבר, ד"ר יניב עובדיה</h3>
-                <p class="text-lg leading-relaxed italic" style="color:#5E548ECC;">
-                    "כתבתי את 'הרפתקאותיה של ריס' מתוך אמונה עמוקה שכל ילד זכאי להבין את הכוח הפנימי שטמון בו. כשאנחנו מחברים ידע עם קסם, אנחנו נותנים להם כלים לחיים."
-                </p>
-                <p class="font-medium mt-4 text-heading">אבא, רופא ואיש חינוך</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== ORDER ===== -->
-    <section id="order" class="py-20 px-4 relative overflow-hidden">
-        <div class="absolute bottom-0 inset-x-0 h-3/4 rounded-t-[5rem] -z-10"
-             style="background:rgba(199,184,255,.2);"></div>
-
-        <div class="container mx-auto max-w-2xl relative z-10">
-            <div class="text-center mb-10">
-                <h2 class="text-4xl md:text-5xl font-black text-heading mb-4 leading-tight">
-                    תנו לילדכם את ההרפתקה<br>שתשנה את הדרך שהם רואים את עצמם.
-                </h2>
-                <p class="text-lg" style="color:#5E548E99;">הזמינו היום – ותקבלו את הספר בדואר תוך ימים ספורים.</p>
-            </div>
-
-            <!-- Order box -->
-            <div class="bg-white rounded-3xl p-8 md:p-10 order-glow">
-
-                <!-- What you get -->
-                <div class="mb-6">
-                    <p class="text-sm font-bold uppercase tracking-widest mb-3" style="color:#5E548E66;">מה מקבלים:</p>
-                    <ul class="space-y-2" style="color:#5E548ECC;">
-                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> הספר המודפס "הרפתקאותיה של ריס בארץ התריס"</li>
-                        <li class="flex items-center gap-3"><span style="color:#9ED8C3;" class="text-xl">✓</span> איורים מרהיבים בצבע מלא לאורך כל הספר</li>
-                    </ul>
-                </div>
-
-                <hr style="border-color:rgba(199,184,255,.3);" class="mb-6">
-
-                <!-- Book image + Pricing side by side -->
-                <div class="flex items-center gap-6 mb-6">
-                    <img src="EDIT-HERE.png" alt="הספר" class="object-contain rounded-xl flex-shrink-0" style="width:180px; filter: drop-shadow(0 12px 24px rgba(94,84,142,.35));">
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-4xl font-black text-heading">₪48</span>
-                            <span class="price-tag text-2xl font-bold" style="color:#5E548E40;">₪68</span>
-                        </div>
-                        <p class="text-sm font-bold mt-1" style="color:#FF6B6B;">חסכון של ₪20 – מחיר השקה מיוחד!</p>
-                        <div class="text-right rounded-2xl p-2 mt-2" style="background:rgba(158,216,195,.1);border:1px solid rgba(158,216,195,.4);">
-                            <p class="text-xs font-medium" style="color:#5E548E99;">⏳ המחיר עולה בקרוב</p>
-                            <p class="text-xs" style="color:#5E548E66;">נותרו מעט עותקים</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CTA button -->
-                <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank" class="cta-shimmer block w-full text-xl font-black py-5 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all transform hover:scale-105 mb-4">
-                    כן! אני רוצה את הספר ←
-                </a>
-
-                <!-- Trust icons -->
-                <div class="flex justify-center gap-6 flex-wrap text-xs" style="color:#5E548E66;">
-                    <span>🔒 תשלום מאובטח</span>
-                    <span>📦 משלוח עד 5 ימי עסקים</span>
-                    <span>❤️ מאות הורים מרוצים</span>
-                </div>
-
-                <!-- Reviews -->
-                <div class="mt-8 pt-6 space-y-4" style="border-top:1px solid rgba(199,184,255,.2);">
-                    <p class="text-xs font-bold uppercase tracking-widest text-center mb-4" style="color:#5E548E66;">מה אמרו הורים אחרים?</p>
-                    <div class="rounded-xl p-4" style="background:#F5F3FF;">
-                        <div class="flex mb-1"><span class="star text-sm">★★★★★</span></div>
-                        <p class="text-sm" style="color:#5E548ECC;">"הבן שלי ביקש לקרוא כל לילה. סוף סוף ספר שהוא לא מרשה לי לסגור!"</p>
-                        <p class="text-xs mt-1" style="color:#5E548E66;">— מיכל ג., אמא לבן 6</p>
-                    </div>
-                    <div class="rounded-xl p-4" style="background:#F5F3FF;">
-                        <div class="flex mb-1"><span class="star text-sm">★★★★★</span></div>
-                        <p class="text-sm" style="color:#5E548ECC;">"אחרי הספר הבת שלי התחילה לשאול שאלות על הגוף שלה. הרגשתי שנפתח עולם שלם."</p>
-                        <p class="text-xs mt-1" style="color:#5E548E66;">— רונית מ., אמא לבת 8</p>
-                    </div>
-                </div>
-            </div>
-
-            <p class="text-center text-sm mt-6" style="color:#5E548E66;">
-                לא בטוחים? שלחו לנו הודעה – אנחנו כאן לכל שאלה.
-            </p>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="py-8 text-center text-sm" style="background:#F5F3FF;color:#5E548E66;">
-        <div class="container mx-auto px-4">
-            <p>© 2024 הרפתקאותיה של ריס בארץ התריס. כל הזכויות שמורות.</p>
-            <div class="mt-4 flex justify-center gap-4">
-                <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">תקנון</a>
-                <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">מדיניות פרטיות</a>
-                <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">צור קשר</a>
-            </div>
-        </div>
-    </footer>
-
+    </div>
+</footer>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const reviews = [
-            { text: '"הילדה שלי ביקשה לקרוא שלוש פעמים ברצף!"', author: '— שירה, אמא לבת 7' },
-            { text: '"הבן שלי לא הרשה לי לסגור את הספר לפני שגמרנו!"', author: '— מיכל ג., אמא לבן 6' },
-            { text: '"אחרי הספר הוא שאל שאלות על הגוף שלו כל היום!"', author: '— דנה מ., אמא לבן 8' },
-            { text: '"קנינו עוד עותק לסבתא – גם היא התאהבה!"', author: '— רותי כ., אמא לבת 5' },
-            { text: '"ספר שגורם לילדים לאהוב ללמוד – נדיר!"', author: '— אייל ש., אבא לבן 9' },
-        ];
+document.addEventListener('DOMContentLoaded', function() {
+    const reviews = [
+        { text: '"הילדה שלי ביקשה לקרוא שלוש פעמים ברצף!"', author: '— שירה, אמא לבת 7' },
+        { text: '"הבן שלי לא הרשה לי לסגור את הספר לפני שגמרנו!"', author: '— מיכל ג., אמא לבן 6' },
+        { text: '"אחרי הספר הוא שאל שאלות על הגוף שלו כל היום!"', author: '— דנה מ., אמא לבן 8' },
+        { text: '"קנינו עוד עותק לסבתא – גם היא התאהבה!"', author: '— רותי כ., אמא לבת 5' },
+        { text: '"ספר שגורם לילדים לאהוב ללמוד – נדיר!"', author: '— אייל ש., אבא לבן 9' },
+    ];
+    let current = 0;
+    const bubble = document.getElementById('review-bubble');
+    const textEl = document.getElementById('review-text');
+    const authorEl = document.getElementById('review-author');
+    if (!bubble || !textEl || !authorEl) return;
 
-        let current = 0;
-        const bubble = document.getElementById('review-bubble');
-        const textEl  = document.getElementById('review-text');
-        const authorEl = document.getElementById('review-author');
-
-        if (!bubble || !textEl || !authorEl) return;
-
-        function showReview(index) {
-            // Pop out
-            bubble.style.transition = 'transform 0.25s cubic-bezier(0.36,0.07,0.19,0.97), opacity 0.2s ease';
-            bubble.style.transform  = 'scale(0.65)';
-            bubble.style.opacity    = '0';
-
-            setTimeout(function() {
-                textEl.textContent   = reviews[index].text;
-                authorEl.textContent = reviews[index].author;
-                // Pop in with spring
-                bubble.style.transition = 'transform 0.4s cubic-bezier(0.175,0.885,0.32,1.4), opacity 0.25s ease';
-                bubble.style.transform  = 'scale(1)';
-                bubble.style.opacity    = '1';
-            }, 270);
-        }
-
-        // Show first immediately
-        showReview(0);
-
-        // Rotate every 3.5s
-        setInterval(function() {
-            current = (current + 1) % reviews.length;
-            showReview(current);
-        }, 3500);
-    });
+    function showReview(index) {
+        bubble.style.transition = 'transform 0.25s cubic-bezier(0.36,0.07,0.19,0.97), opacity 0.2s ease';
+        bubble.style.transform = 'scale(0.65)';
+        bubble.style.opacity = '0';
+        setTimeout(function() {
+            textEl.textContent = reviews[index].text;
+            authorEl.textContent = reviews[index].author;
+            bubble.style.transition = 'transform 0.4s cubic-bezier(0.175,0.885,0.32,1.4), opacity 0.25s ease';
+            bubble.style.transform = 'scale(1)';
+            bubble.style.opacity = '1';
+        }, 270);
+    }
+    showReview(0);
+    setInterval(function() {
+        current = (current + 1) % reviews.length;
+        showReview(current);
+    }, 3500);
+});
 </script>
 </body>
 </html>
