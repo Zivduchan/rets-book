@@ -63,9 +63,8 @@
 
         .order-glow { box-shadow: 0 0 60px rgba(199,184,255,.4), 0 20px 40px -10px rgba(94,84,142,.2); }
         [id] { scroll-margin-top: 70px; }
-        @media (min-width: 768px) {
-            #chars-row1, #chars-row2 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
-        }
+        .chars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        @media (min-width: 768px) { .chars-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -73,7 +72,7 @@
 <!-- HEADER -->
 <header class="py-4 px-4 md:py-6 md:px-8 flex justify-between items-center container mx-auto">
     <div class="text-xl md:text-2xl font-black text-heading tracking-tight">ארץ התריס</div>
-    <a href="#order" class="bg-primary text-heading font-bold py-2 px-5 md:py-3 md:px-8 rounded-full text-sm md:text-base shadow-sm hover:shadow-md transition">
+    <a href="order-form.html" target="_blank" class="bg-primary text-heading font-bold py-2 px-5 md:py-3 md:px-8 rounded-full text-sm md:text-base shadow-sm hover:shadow-md transition">
         הזמינו עכשיו
     </a>
 </header>
@@ -94,7 +93,7 @@
                 כשהילד שלכם יסגור את הספר,<br class="hidden md:block"> הוא יאמין בעצמו קצת יותר.
             </h1>
             <p class="text-base md:text-xl text-heading opacity-80 mb-4 leading-relaxed max-w-xl mx-auto md:mx-0">
-                ספר ילדים ייחודי לגילאי 6–10 שמלמד על הגוף, הבריאות וה<strong>כוח הפנימי</strong> – דרך הרפתקה הילדים מגלים את הקשר הישיר בין התזונה להרגשה האישית שלהם. הספר כולל ליווי מקצועי של עריכה תזונתית, הצעות לפעילות יצירה ומתכונים משפחתיים קלים להכנה. 
+                ספר ילדים ייחודי לגילאי 6–10 שמלמד על הגוף, הבריאות וה<strong>כוח הפנימי</strong> – דרך הרפתקה הילדים מגלים את הקשר הישיר בין התזונה להרגשה האישית שלהם. הספר כולל הנגשת ידע מבוסס מחקרית לילדים, הצעות לפעילות יצירה ומתכונים משפחתיים קלים להכנה. 
             </p>
             <div class="flex items-center justify-center md:justify-start gap-2 mb-5">
                 <span class="star text-lg">★★★★★</span>
@@ -103,7 +102,7 @@
                 </p>
             </div>
             <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-3 items-center mb-4">
-                <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank"
+                <a href="order-form.html" target="_blank"
                    class="cta-shimmer w-full sm:w-auto text-lg md:text-xl font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg text-center block sm:inline-block">
                     אני רוצה את הספר! ←
                 </a>
@@ -144,7 +143,7 @@
             איך מסבירים לילדים סקרנים על תהליכים שקורים בגוף שלהם, או על חשיבות הבריאות, מבלי להלחיץ או לשעמם אותם?
         </p>
         <p class="text-sm md:text-lg leading-relaxed" style="color:#5E548ECC;">
-            אתם רוצים להעניק להם ידע וכוח, אבל גם לשמור על התמימות והקסם של הילדות. בדיוק בשביל זה יצרנו את "ארץ התריס".
+            רובינו רוצים להעניק להם ידע וכוח, אבל גם לשמור על התמימות והקסם של הילדות. בדיוק בשביל זה יצרנו את "ארץ התריס".
         </p>
     </div>
 </section>
@@ -153,15 +152,15 @@
 <section id="characters" class="py-10 md:py-16 px-4 relative">
     <div class="container mx-auto">
         <div class="text-center mb-3">
-            <span class="text-xs md:text-sm font-bold py-1 px-4 rounded-full" style="background:rgba(199,184,255,.2);color:#5E548E;">הדמויות שיגנבו את הלב</span>
+            <span class="text-xs md:text-sm font-bold py-1 px-4 rounded-full" style="background:rgba(199,184,255,.2);color:#5E548E;">הדמויות ש'יגנבו את הלב</span>
         </div>
         <h2 class="text-2xl md:text-4xl font-black text-center text-heading mb-3">הכירו את החברים למסע</h2>
         <p class="text-center text-sm md:text-lg mb-8 max-w-xl mx-auto" style="color:#5E548E99;">
-            כל דמות מייצגת ערך אחר – וביחד הם לומדים שיעורי חיים שיישארו עם הילדים שלכם לתמיד.
+            כל דמות מייצגת ערך אחר – וביחד הם לומדים שיעורי חיים שכנראה יישארו עם הילדים שלכם לתמיד.
         </p>
 
         <!-- Row 1 -->
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8 mb-3 md:mb-8" style="grid-template-columns: repeat(2, minmax(0, 1fr));" id="chars-row1">
+        <div class="chars-grid grid gap-3 md:gap-8 mb-3 md:mb-8">
 
             <!-- ריס + medal -->
             <div style="position:relative;">
@@ -222,7 +221,7 @@
         </div>
 
         <!-- Row 2 -->
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8" style="grid-template-columns: repeat(2, minmax(0, 1fr));" id="chars-row2">
+        <div class="chars-grid grid gap-3 md:gap-8">
 
             <!-- יודיד -->
             <div class="character-card bg-white rounded-2xl md:rounded-3xl shadow-md overflow-hidden">
@@ -270,7 +269,7 @@
 
         <!-- Characters CTA -->
         <div class="text-center mt-8 md:mt-12">
-            <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank"
+            <a href="order-form.html" target="_blank"
                class="cta-shimmer inline-block font-bold py-3 md:py-4 px-8 md:px-12 rounded-full shadow-md hover:shadow-lg transition">
                 הזמינו עכשיו וצאו להרפתקה ←
             </a>
@@ -287,7 +286,7 @@
 
     <div class="container mx-auto max-w-3xl md:max-w-5xl relative z-10">
         <h2 class="text-2xl md:text-4xl font-black text-center text-heading mb-6 md:mb-12">יותר מרק סיפור לפני השינה</h2>
-        <div class="grid grid-cols-1 gap-3 md:gap-6">
+        <div class="grid grid-cols-2 gap-3 md:gap-6">
             <div class="flex items-start gap-3 md:gap-4 rounded-2xl p-4 md:p-6" style="background:#F5F3FF;">
                 <div class="rounded-full p-2 md:p-3 shrink-0" style="background:rgba(158,216,195,.2);">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" style="color:#9ED8C3;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
@@ -339,9 +338,9 @@
         <div class="text-center md:text-right">
             <h3 class="text-xl md:text-2xl font-bold text-heading mb-3">דבר המחבר, ד"ר יניב עובדיה</h3>
             <p class="text-base md:text-lg leading-relaxed italic" style="color:#5E548ECC;">
-                "כתבתי את 'הרפתקאותיה של ריס' מתוך אמונה עמוקה שכל ילד זכאי להבין את הכוח הפנימי שטמון בו. כשאנחנו מחברים ידע עם קסם, אנחנו נותנים להם כלים לחיים."
+                "כתבתי את 'הרפתקאותיה של ריס' מתוך אמונה עמוקה שכל ילד זכאי להבין את הכוח הפנימי שטמון בו. כשאנחנו מחברים ידע עם קסם, אנחנו כנראה מעניקים להם כלים לחיים."
             </p>
-            <p class="font-medium mt-3 text-heading">תזונאי ואיש בריאות ציבור</p>
+            <p class="font-medium mt-3 text-heading">אבא, ד"ר לתזונה, תזונאי-דיאטן מוסמך מטעם משרד הבריאות ו <a href="https://www.dryaniv.co.il/about-dr-yaniv">איש בריאות ציבור<a/> </p>
         </div>
     </div>
 </section>
@@ -364,6 +363,8 @@
                 <ul class="space-y-2" style="color:#5E548ECC;">
                     <li class="flex items-center gap-3 text-sm md:text-base"><span style="color:#9ED8C3;" class="text-lg">✓</span> הספר המודפס "הרפתקאותיה של ריס בארץ התריס"</li>
                     <li class="flex items-center gap-3 text-sm md:text-base"><span style="color:#9ED8C3;" class="text-lg">✓</span> איורים מרהיבים בצבע מלא לאורך כל הספר</li>
+                    <li class="flex items-center gap-3 text-sm md:text-base"><span style="color:#9ED8C3;" class="text-lg">✓</span> הצעות הפעלה ומתכונים קלילים</li>
+
                 </ul>
             </div>
 
@@ -380,14 +381,14 @@
                     </div>
                     <p class="text-sm font-bold mt-1" style="color:#FF6B6B;">חסכון של ₪20 – מחיר השקה מיוחד!</p>
                     <div class="rounded-2xl p-2 mt-2 text-right" style="background:rgba(158,216,195,.1);border:1px solid rgba(158,216,195,.4);">
-                        <p class="text-xs font-medium" style="color:#5E548E99;">⏳ המחיר עולה בקרוב</p>
+                        <p class="text-xs font-medium" style="color:#5E548E99;">⏳ המחיר המחיר עשוי לעלות בהמשך!</p>
                         <p class="text-xs" style="color:#5E548E66;">נותרו מעט עותקים</p>
                     </div>
                 </div>
             </div>
 
             <!-- CTA -->
-            <a href="https://api.whatsapp.com/send?phone=972545497227&text=%D7%94%D7%99%D7%99%20%D7%96%D7%99%D7%95%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8" target="_blank"
+            <a href="order-form.html" target="_blank"
                class="cta-shimmer block w-full text-lg md:text-xl font-black py-4 md:py-5 rounded-2xl text-center shadow-lg mb-4">
                 כן! אני רוצה את הספר ←
             </a>
@@ -413,19 +414,11 @@
                 </div>
             </div>
         </div>
-        <p class="text-center text-sm mt-5" style="color:#5E548E66;">לא בטוחים? שלחו לנו הודעה – אנחנו כאן לכל שאלה.</p>
-    </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="py-6 md:py-8 text-center text-xs md:text-sm" style="background:#F5F3FF;color:#5E548E66;">
     <div class="container mx-auto px-4">
-        <p>© 2024 הרפתקאותיה של ריס בארץ התריס. כל הזכויות שמורות.</p>
-        <div class="mt-3 flex justify-center gap-4">
-            <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">תקנון</a>
-            <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">מדיניות פרטיות</a>
-            <a href="#" style="color:#5E548E66;" class="hover:text-heading underline">צור קשר</a>
-        </div>
     </div>
 </footer>
 
