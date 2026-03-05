@@ -416,6 +416,70 @@
         </div>
 </section>
 
+<!-- FAQ -->
+<section class="py-10 md:py-16 px-4 bg-white">
+    <div class="container mx-auto max-w-3xl">
+        <div class="text-center mb-8 md:mb-12">
+            <span class="text-xs md:text-sm font-bold py-1 px-4 rounded-full" style="background:rgba(199,184,255,.2);color:#5E548E;">יש לכם שאלות?</span>
+            <h2 class="text-2xl md:text-4xl font-black text-heading mt-3">שאלות ותשובות</h2>
+        </div>
+
+        <div class="space-y-3">
+
+            <div class="faq-item rounded-2xl overflow-hidden border" style="border-color:rgba(199,184,255,.3);">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between gap-4 p-5 text-right font-bold text-heading text-base md:text-lg" style="background:#F5F3FF;">
+                    <span>לאילו גילאים הספר מתאים?</span>
+                    <span class="faq-icon text-xl shrink-0" style="color:#C7B8FF;">+</span>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5 pt-2 text-sm md:text-base leading-relaxed" style="color:#5E548ECC;">
+                    הספר נכתב והותאם במיוחד לילדים בגילאי 6 עד 10 (כיתות א'–ד'). השפה מונגשת, העלילה סוחפת, והוא מתאים לקריאה עצמית או להקראה משותפת של הורה וילד לפני השינה.
+                </div>
+            </div>
+
+            <div class="faq-item rounded-2xl overflow-hidden border" style="border-color:rgba(199,184,255,.3);">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between gap-4 p-5 text-right font-bold text-heading text-base md:text-lg" style="background:#F5F3FF;">
+                    <span>מי עומד מאחורי כתיבת הספר ופיתוח התוכן?</span>
+                    <span class="faq-icon text-xl shrink-0" style="color:#C7B8FF;">+</span>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5 pt-2 text-sm md:text-base leading-relaxed" style="color:#5E548ECC;">
+                    הספר נוצר על ידי ד"ר יניב עובדיה, דיאטן קליני וחוקר תזונה, בשיתוף הדיאטנית יעל אורן. יחד הם הפכו ידע רפואי ומחקרי לסיפור הרפתקאות מחזק, המעניק לילדים כלים לקשר חיובי עם גופם.
+                </div>
+            </div>
+
+            <div class="faq-item rounded-2xl overflow-hidden border" style="border-color:rgba(199,184,255,.3);">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between gap-4 p-5 text-right font-bold text-heading text-base md:text-lg" style="background:#F5F3FF;">
+                    <span>האם הספר כולל רק סיפור או גם פעילויות?</span>
+                    <span class="faq-icon text-xl shrink-0" style="color:#C7B8FF;">+</span>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5 pt-2 text-sm md:text-base leading-relaxed" style="color:#5E548ECC;">
+                    מעבר לעלילה, הספר כולל ערך פרקטי בדמות ידע מדעי מונגש, פעילויות יצירה ומתכונים משפחתיים בריאים.
+                </div>
+            </div>
+
+            <div class="faq-item rounded-2xl overflow-hidden border" style="border-color:rgba(199,184,255,.3);">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between gap-4 p-5 text-right font-bold text-heading text-base md:text-lg" style="background:#F5F3FF;">
+                    <span>איך הספר עוזר לילד שלי להבין את חשיבות התזונה?</span>
+                    <span class="faq-icon text-xl shrink-0" style="color:#C7B8FF;">+</span>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5 pt-2 text-sm md:text-base leading-relaxed" style="color:#5E548ECC;">
+                    במקום להטיף ל"מה בריא ומה לא", הספר משתמש במטאפורות מעולם הדמיון. דרך הדמויות של ריס, ברזלן, סלינה ויודיד, הילדים מגלים איך רכיבי תזונה שונים עוזרים להם להרגיש חזקים, חכמים ואנרגטיים יותר.
+                </div>
+            </div>
+
+            <div class="faq-item rounded-2xl overflow-hidden border" style="border-color:rgba(199,184,255,.3);">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between gap-4 p-5 text-right font-bold text-heading text-base md:text-lg" style="background:#F5F3FF;">
+                    <span>האם הספר מתאים כמתנה לילדים בישראל?</span>
+                    <span class="faq-icon text-xl shrink-0" style="color:#C7B8FF;">+</span>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5 pt-2 text-sm md:text-base leading-relaxed" style="color:#5E548ECC;">
+                    בהחלט. הספר הותאם במיוחד להווי הישראלי, עם דגש על שפה, ערכים משפחתיים וגישות עדכניות לחינוך לבריאות הנהוגות בארץ.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="py-6 md:py-8 text-center text-xs md:text-sm" style="background:#F5F3FF;color:#5E548E66;">
     <div class="container mx-auto px-4">
@@ -455,6 +519,22 @@ document.addEventListener('DOMContentLoaded', function() {
         showReview(current);
     }, 3500);
 });
+</script>
+
+<script>
+function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = !answer.classList.contains('hidden');
+    // Close all
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+    document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+    // Open clicked if it was closed
+    if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.textContent = '−';
+    }
+}
 </script>
 </body>
 </html>
