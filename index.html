@@ -423,7 +423,6 @@
             <span class="text-xs md:text-sm font-bold py-1 px-4 rounded-full" style="background:rgba(199,184,255,.2);color:#5E548E;">יש לכם שאלות?</span>
             <h2 class="text-2xl md:text-4xl font-black text-heading mt-3">שאלות ותשובות</h2>
         </div>
-
         <div class="space-y-3">
 
             <div class="faq-item rounded-2xl overflow-hidden border" style="border-color:rgba(199,184,255,.3);">
@@ -520,16 +519,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3500);
 });
 </script>
-
 <script>
 function toggleFaq(btn) {
     const answer = btn.nextElementSibling;
     const icon = btn.querySelector('.faq-icon');
     const isOpen = !answer.classList.contains('hidden');
-    // Close all
     document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
     document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
-    // Open clicked if it was closed
     if (!isOpen) {
         answer.classList.remove('hidden');
         icon.textContent = '−';
