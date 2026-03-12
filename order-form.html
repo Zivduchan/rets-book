@@ -9,7 +9,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'Heebo', sans-serif;
             background: #F5F3FF;
@@ -20,7 +19,6 @@
             justify-content: center;
             padding: 24px 16px;
         }
-
         .card {
             background: white;
             border-radius: 28px;
@@ -29,220 +27,192 @@
             max-width: 480px;
             box-shadow: 0 0 60px rgba(199,184,255,.35), 0 20px 40px -10px rgba(94,84,142,.18);
         }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 28px;
-        }
+        .header { text-align: center; margin-bottom: 24px; }
         .badge {
             display: inline-block;
             background: rgba(199,184,255,.2);
             color: #5E548E;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 14px;
-            border-radius: 50px;
-            margin-bottom: 12px;
+            font-size: 0.75rem; font-weight: 700;
+            padding: 4px 14px; border-radius: 50px; margin-bottom: 12px;
         }
-        .header h1 {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #5E548E;
-            line-height: 1.3;
-            margin-bottom: 6px;
-        }
-        .header p {
-            font-size: 0.9rem;
-            color: #5E548E99;
-        }
-
-        /* Price row */
+        .header h1 { font-size: 1.6rem; font-weight: 900; color: #5E548E; line-height: 1.3; margin-bottom: 6px; }
+        .header p { font-size: 0.9rem; color: #5E548E99; }
         .price-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: #F5F3FF;
-            border-radius: 16px;
-            padding: 12px 20px;
-            margin-bottom: 28px;
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; background: #F5F3FF; border-radius: 16px;
+            padding: 12px 20px; margin-bottom: 24px;
         }
-        .price-new {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #5E548E;
-        }
-        .price-old {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #5E548E40;
-            position: relative;
-        }
+        .price-new { font-size: 1.8rem; font-weight: 900; color: #5E548E; }
+        .price-old { font-size: 1.1rem; font-weight: 700; color: #5E548E40; position: relative; }
         .price-old::before {
-            content: '';
-            position: absolute;
+            content: ''; position: absolute;
             top: 50%; left: -3px; right: -3px;
-            height: 2px;
-            background: #FF6B6B;
-            transform: rotate(-8deg);
+            height: 2px; background: #FF6B6B; transform: rotate(-8deg);
         }
-        .price-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #FF6B6B;
-            background: rgba(255,107,107,.08);
-            padding: 3px 8px;
-            border-radius: 8px;
-        }
-
-        /* Form */
-        .form-group {
-            margin-bottom: 16px;
-        }
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #5E548E;
-            margin-bottom: 6px;
-        }
-        label span {
-            color: #FF6B6B;
-        }
+        .price-label { font-size: 0.75rem; font-weight: 700; color: #FF6B6B; background: rgba(255,107,107,.08); padding: 3px 8px; border-radius: 8px; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-size: 0.85rem; font-weight: 700; color: #5E548E; margin-bottom: 6px; }
+        label span { color: #FF6B6B; }
         input, textarea {
-            width: 100%;
-            padding: 12px 16px;
+            width: 100%; padding: 12px 16px;
             border: 1.5px solid rgba(199,184,255,.5);
-            border-radius: 14px;
-            font-family: 'Heebo', sans-serif;
-            font-size: 0.95rem;
-            color: #5E548E;
-            background: #FAFAFA;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            outline: none;
+            border-radius: 14px; font-family: 'Heebo', sans-serif;
+            font-size: 0.95rem; color: #5E548E; background: #FAFAFA;
+            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
         }
         input:focus, textarea:focus {
             border-color: #C7B8FF;
-            box-shadow: 0 0 0 3px rgba(199,184,255,.2);
-            background: white;
+            box-shadow: 0 0 0 3px rgba(199,184,255,.2); background: white;
         }
-        input::placeholder, textarea::placeholder {
-            color: #5E548E44;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 90px;
-        }
+        input::placeholder, textarea::placeholder { color: #5E548E44; }
+        textarea { resize: vertical; min-height: 80px; }
 
-        /* Submit button */
+        /* SHIPPING */
+        .shipping-label { font-size: 0.85rem; font-weight: 700; color: #5E548E; margin-bottom: 10px; display: block; }
+        .shipping-label span { color: #FF6B6B; }
+        .shipping-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 4px; }
+        .shipping-option {
+            display: flex; align-items: center; gap: 0;
+            border: 1.5px solid rgba(199,184,255,.5);
+            border-radius: 14px; cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            overflow: hidden; background: #FAFAFA;
+        }
+        .shipping-option:hover { border-color: #C7B8FF; background: white; }
+        .shipping-option input[type="radio"] { display: none; }
+        .shipping-option.selected {
+            border-color: #5E548E; background: white;
+            box-shadow: 0 0 0 3px rgba(199,184,255,.25);
+        }
+        .ship-icon {
+            width: 52px; min-width: 52px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; padding: 14px 0;
+            background: rgba(199,184,255,.12); align-self: stretch;
+        }
+        .ship-info { flex: 1; padding: 12px 14px; }
+        .ship-name { font-size: 0.9rem; font-weight: 800; color: #5E548E; display: block; }
+        .ship-desc { font-size: 0.75rem; color: #5E548E88; margin-top: 2px; }
+        .ship-price { padding: 12px 14px; font-size: 0.95rem; font-weight: 900; color: #5E548E; white-space: nowrap; flex-shrink: 0; }
+        .ship-price.free { color: #16a34a; }
+        .ship-check {
+            width: 20px; height: 20px; border-radius: 50%;
+            border: 2px solid #C7B8FF; margin-left: 14px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .shipping-option.selected .ship-check { background: #5E548E; border-color: #5E548E; }
+        .ship-check::after { content: '✓'; color: white; font-size: 11px; font-weight: 900; display: none; }
+        .shipping-option.selected .ship-check::after { display: block; }
+
+        /* TOTAL */
+        .total-box {
+            background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FF 100%);
+            border: 1.5px solid rgba(199,184,255,.6);
+            border-radius: 16px; padding: 14px 18px;
+            margin: 18px 0; display: flex;
+            align-items: center; justify-content: space-between;
+        }
+        .total-breakdown { font-size: 0.8rem; color: #5E548E88; line-height: 1.7; }
+        .total-breakdown strong { display: block; font-size: 0.82rem; color: #5E548E; }
+        .total-label { font-size: 0.7rem; font-weight: 700; color: #5E548E88; text-transform: uppercase; letter-spacing: 0.5px; }
+        .total-number { font-size: 2rem; font-weight: 900; color: #5E548E; line-height: 1; }
+        .address-group { transition: opacity 0.3s; }
+        .address-group.hidden-field { opacity: 0.4; pointer-events: none; }
+
         .btn-submit {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Heebo', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: white;
-            cursor: pointer;
+            width: 100%; padding: 16px; border: none; border-radius: 50px;
+            font-family: 'Heebo', sans-serif; font-size: 1.1rem; font-weight: 900;
+            color: white; cursor: pointer;
             background: linear-gradient(90deg, #FFB26B 0%, #FFCA8E 40%, #FFB26B 60%, #FF9F4A 100%);
-            background-size: 200% auto;
-            animation: shimmer 3s linear infinite;
-            transition: transform 0.2s;
-            margin-top: 8px;
+            background-size: 200% auto; animation: shimmer 3s linear infinite;
+            transition: transform 0.2s; margin-top: 4px;
         }
         .btn-submit:hover { transform: scale(1.02); }
         .btn-submit:active { transform: scale(0.98); }
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        .trust { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 0.75rem; color: #5E548E66; }
+        .success-screen { display: none; text-align: center; padding: 20px 0; }
+        .success-icon { font-size: 3.5rem; margin-bottom: 16px; animation: pop 0.5s cubic-bezier(0.175,0.885,0.32,1.4); }
+        @keyframes pop { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .success-screen h2 { font-size: 1.5rem; font-weight: 900; color: #5E548E; margin-bottom: 8px; }
+        .success-screen p { font-size: 0.95rem; color: #5E548E99; line-height: 1.6; }
+        .success-details {
+            background: #F5F3FF; border-radius: 16px;
+            padding: 14px 18px; margin: 16px 0;
+            font-size: 0.9rem; color: #5E548E; line-height: 1.8; text-align: right;
         }
-
-        /* Trust row */
-        .trust {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-top: 14px;
-            font-size: 0.75rem;
-            color: #5E548E66;
-        }
-
-        /* Success state */
-        .success-screen {
-            display: none;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .success-icon {
-            font-size: 3.5rem;
-            margin-bottom: 16px;
-            animation: pop 0.5s cubic-bezier(0.175,0.885,0.32,1.4);
-        }
-        @keyframes pop {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .success-screen h2 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #5E548E;
-            margin-bottom: 8px;
-        }
-        .success-screen p {
-            font-size: 0.95rem;
-            color: #5E548E99;
-            line-height: 1.6;
-        }
-
-        /* Error message */
-        .error-msg {
-            color: #FF6B6B;
-            font-size: 0.8rem;
-            margin-top: 4px;
-            display: none;
-        }
-
-        @media (max-width: 480px) {
-            .card { padding: 28px 20px; }
-            .header h1 { font-size: 1.35rem; }
-        }
+        .error-msg { color: #FF6B6B; font-size: 0.8rem; margin-top: 4px; display: none; }
+        .error-msg.visible { display: block; }
+        @media (max-width: 480px) { .card { padding: 28px 20px; } .header h1 { font-size: 1.35rem; } }
     </style>
 </head>
 <body>
-
 <div class="card">
-    <!-- Form screen -->
     <div id="form-screen">
         <div class="header">
             <div class="badge">📦 הזמנה מהירה</div>
             <h1>הרפתקאותיה של ריס<br>בארץ התריס</h1>
             <p>מלאו את הפרטים ונחזור אליכם תוך שעות</p>
         </div>
-
         <div class="price-row">
             <span class="price-new">₪48</span>
             <span class="price-old">₪68</span>
             <span class="price-label">🔥 מחיר השקה</span>
         </div>
-
         <form id="order-form" novalidate>
             <div class="form-group">
                 <label>שם מלא <span>*</span></label>
                 <input type="text" id="name" placeholder="ישראל ישראלי" autocomplete="name">
                 <div class="error-msg" id="name-error">נא למלא שם מלא</div>
             </div>
-
             <div class="form-group">
                 <label>טלפון <span>*</span></label>
                 <input type="tel" id="phone" placeholder="050-0000000" autocomplete="tel" dir="ltr">
                 <div class="error-msg" id="phone-error">נא למלא מספר טלפון תקין</div>
             </div>
 
+            <!-- SHIPPING -->
             <div class="form-group">
-                <label>כתובת למשלוח <span>*</span></label>
+                <span class="shipping-label">שיטת משלוח <span>*</span></span>
+                <div class="shipping-options" id="shipping-options">
+                    <label class="shipping-option" data-value="pickup" data-price="0" data-label="איסוף עצמי">
+                        <input type="radio" name="shipping" value="pickup">
+                        <div class="ship-icon">🏠</div>
+                        <div class="ship-info">
+                            <span class="ship-name">איסוף עצמי</span>
+                            <span class="ship-desc">תיאום מקום ושעה בהודעה</span>
+                        </div>
+                        <div class="ship-price free">חינם</div>
+                        <div class="ship-check"></div>
+                    </label>
+                    <label class="shipping-option" data-value="regular" data-price="15" data-label="דואר רגיל">
+                        <input type="radio" name="shipping" value="regular">
+                        <div class="ship-icon">📬</div>
+                        <div class="ship-info">
+                            <span class="ship-name">דואר רגיל</span>
+                            <span class="ship-desc">3–7 ימי עסקים</span>
+                        </div>
+                        <div class="ship-price">+₪15</div>
+                        <div class="ship-check"></div>
+                    </label>
+                    <label class="shipping-option" data-value="express" data-price="25" data-label="דואר מהיר">
+                        <input type="radio" name="shipping" value="express">
+                        <div class="ship-icon">⚡</div>
+                        <div class="ship-info">
+                            <span class="ship-name">דואר מהיר</span>
+                            <span class="ship-desc">1–2 ימי עסקים</span>
+                        </div>
+                        <div class="ship-price">+₪25</div>
+                        <div class="ship-check"></div>
+                    </label>
+                </div>
+                <div class="error-msg" id="shipping-error">נא לבחור שיטת משלוח</div>
+            </div>
+
+            <!-- ADDRESS -->
+            <div class="form-group address-group" id="address-group">
+                <label id="address-label">כתובת למשלוח <span>*</span></label>
                 <input type="text" id="address" placeholder="רחוב, מספר, עיר, מיקוד" autocomplete="street-address">
                 <div class="error-msg" id="address-error">נא למלא כתובת מלאה</div>
             </div>
@@ -252,93 +222,138 @@
                 <textarea id="notes" placeholder="קומה, קוד דלת, כמות עותקים נוספים..."></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">
-                שלח הזמנה ←
-            </button>
+            <!-- TOTAL -->
+            <div class="total-box">
+                <div class="total-breakdown">
+                    <strong>סיכום הזמנה</strong>
+                    ספר: ₪48<br>
+                    <span id="shipping-line">משלוח: טרם נבחר</span>
+                </div>
+                <div class="total-amount">
+                    <div class="total-label">סה"כ לתשלום</div>
+                    <div class="total-number" id="total-display">₪48</div>
+                </div>
+            </div>
 
+            <button type="submit" class="btn-submit">שלח הזמנה ←</button>
             <div class="trust">
-                <span>🔒 תשלום מאובטח</span>
-                <span>📦 משלוח עד 5 ימים</span>
+                <span>🔒 מאובטח</span>
+                <span>📦 משלוח מהיר</span>
                 <span>❤️ +1,200 משפחות</span>
             </div>
         </form>
     </div>
 
-    <!-- Success screen -->
+    <!-- Success -->
     <div class="success-screen" id="success-screen">
         <div class="success-icon">🎉</div>
         <h2>ההזמנה התקבלה!</h2>
-        <p>תודה רבה!<br>ניצור איתך קשר בהקדם לאישור ופרטי תשלום.</p>
+        <div class="success-details" id="success-details"></div>
+        <p>תוך דקות תקבלו הודעת WhatsApp<br>עם פרטי התשלום. תודה רבה! 📚</p>
     </div>
 </div>
 
 <script>
-// =============================================
-// הגדרות – שנה כאן את הפרטים שלך
-// =============================================
-const WEBHOOK_URL = 'https://hook.eu2.make.com/iluueqbmbs9qtexuc9u1ka7ig73rn0u2'; // ← הכנס כאן את ה-webhook מ-Make.com
-// =============================================
+const WEBHOOK_URL = 'https://hook.eu2.make.com/iluueqbmbs9qtexuc9u1ka7ig73rn0u2';
+const BOOK_PRICE  = 48;
 
-const form = document.getElementById('order-form');
+let selectedShipping = null;
 
-form.addEventListener('submit', async function(e) {
+document.querySelectorAll('.shipping-option').forEach(option => {
+    option.addEventListener('click', () => {
+        document.querySelectorAll('.shipping-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        option.querySelector('input[type="radio"]').checked = true;
+
+        const price = parseInt(option.dataset.price);
+        const value = option.dataset.value;
+        const label = option.dataset.label;
+        selectedShipping = { value, price, label };
+
+        const total = BOOK_PRICE + price;
+        document.getElementById('total-display').textContent = '₪' + total;
+        document.getElementById('shipping-line').textContent =
+            price === 0 ? 'משלוח: חינם' : 'משלוח: ₪' + price;
+
+        const addrGroup = document.getElementById('address-group');
+        const addrLabel = document.getElementById('address-label');
+        if (value === 'pickup') {
+            addrGroup.classList.add('hidden-field');
+            addrLabel.innerHTML = 'כתובת למשלוח';
+        } else {
+            addrGroup.classList.remove('hidden-field');
+            addrLabel.innerHTML = 'כתובת למשלוח <span style="color:#FF6B6B">*</span>';
+        }
+        document.getElementById('shipping-error').classList.remove('visible');
+    });
+});
+
+document.getElementById('order-form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const name    = document.getElementById('name').value.trim();
     const phone   = document.getElementById('phone').value.trim();
     const address = document.getElementById('address').value.trim();
     const notes   = document.getElementById('notes').value.trim();
-
-    // Validate
     let valid = true;
-    if (!name) {
-        document.getElementById('name-error').style.display = 'block';
-        valid = false;
-    } else {
-        document.getElementById('name-error').style.display = 'none';
-    }
-    if (!phone || phone.length < 9) {
-        document.getElementById('phone-error').style.display = 'block';
-        valid = false;
-    } else {
-        document.getElementById('phone-error').style.display = 'none';
-    }
-    if (!address) {
-        document.getElementById('address-error').style.display = 'block';
-        valid = false;
-    } else {
-        document.getElementById('address-error').style.display = 'none';
-    }
+
+    const nameErr = document.getElementById('name-error');
+    if (!name) { nameErr.classList.add('visible'); valid = false; }
+    else        { nameErr.classList.remove('visible'); }
+
+    const phoneErr = document.getElementById('phone-error');
+    if (!phone || phone.replace(/\D/g,'').length < 9) {
+        phoneErr.classList.add('visible'); valid = false;
+    } else { phoneErr.classList.remove('visible'); }
+
+    const shipErr = document.getElementById('shipping-error');
+    if (!selectedShipping) { shipErr.classList.add('visible'); valid = false; }
+    else                    { shipErr.classList.remove('visible'); }
+
+    const addrErr = document.getElementById('address-error');
+    if (selectedShipping && selectedShipping.value !== 'pickup' && !address) {
+        addrErr.classList.add('visible'); valid = false;
+    } else { addrErr.classList.remove('visible'); }
+
     if (!valid) return;
 
     const btn = document.querySelector('.btn-submit');
     btn.textContent = 'שולח...';
     btn.disabled = true;
 
+    const shippingCost = selectedShipping.price;
+    const totalPrice   = BOOK_PRICE + shippingCost;
+
     const orderData = {
         name,
         phone,
-        address,
+        address: selectedShipping.value === 'pickup' ? 'איסוף עצמי' : address,
         notes,
-        timestamp: new Date().toLocaleString('he-IL'),
-        price: '₪48'
+        shipping_method: selectedShipping.label,
+        shipping_cost:   '₪' + shippingCost,
+        book_price:      '₪' + BOOK_PRICE,
+        total_price:     '₪' + totalPrice,
+        timestamp:       new Date().toLocaleString('he-IL')
     };
 
     try {
-        // Send to Make.com webhook
-        if (WEBHOOK_URL !== 'YOUR_MAKE_WEBHOOK_URL') {
-            await fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(orderData)
-            });
-        }
-        // Show success
-        document.getElementById('form-screen').style.display = 'none';
+        await fetch(WEBHOOK_URL, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(orderData)
+        });
+
+        document.getElementById('success-details').innerHTML =
+            '📚 ספר: ₪' + BOOK_PRICE + '<br>' +
+            '📦 ' + selectedShipping.label + ': ' + (shippingCost === 0 ? 'חינם' : '₪' + shippingCost) + '<br>' +
+            '💰 <strong>סה"כ לתשלום: ₪' + totalPrice + '</strong><br>' +
+            '📍 ' + (selectedShipping.value === 'pickup' ? 'איסוף עצמי – נתאם מקום ושעה' : address);
+
+        document.getElementById('form-screen').style.display  = 'none';
         document.getElementById('success-screen').style.display = 'block';
     } catch (err) {
         btn.textContent = 'שלח הזמנה ←';
-        btn.disabled = false;
+        btn.disabled    = false;
         alert('אירעה שגיאה, נסה שוב.');
     }
 });
