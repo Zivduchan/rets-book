@@ -181,7 +181,7 @@
                         <div class="ship-icon">🏠</div>
                         <div class="ship-info">
                             <span class="ship-name">איסוף עצמי</span>
-                            <span class="ship-desc">תיאום מקום ושעה בהודעה</span>
+                            <span class="ship-desc">רחוב אמיר 17, רמת-גן · תיאום שעה בהודעה</span>
                         </div>
                         <div class="ship-price free">חינם</div>
                         <div class="ship-check"></div>
@@ -347,7 +347,7 @@ document.getElementById('order-form').addEventListener('submit', async function(
             '📚 ספר: ₪' + BOOK_PRICE + '<br>' +
             '📦 ' + selectedShipping.label + ': ' + (shippingCost === 0 ? 'חינם' : '₪' + shippingCost) + '<br>' +
             '💰 <strong>סה"כ לתשלום: ₪' + totalPrice + '</strong><br>' +
-            '📍 ' + (selectedShipping.value === 'pickup' ? 'איסוף עצמי – נתאם מקום ושעה' : address);
+            '📍 ' + (selectedShipping.value === 'pickup' ? 'איסוף עצמי: רחוב אמיר 17, רמת-גן' : address);
 
         document.getElementById('form-screen').style.display  = 'none';
         document.getElementById('success-screen').style.display = 'block';
